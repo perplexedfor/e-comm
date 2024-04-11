@@ -1,0 +1,55 @@
+<Accordion className="w-full" collapsible type="single">
+              <AccordionItem value="gender">
+                <AccordionTrigger className="text-base">Gender</AccordionTrigger>
+                <AccordionContent>
+                  <div className="grid gap-2">
+                    <Label className="flex items-center gap-2 font-normal">
+                      <Checkbox id="gender-male" />
+                      Male{"\n                                      "}
+                    </Label>
+                    <Label className="flex items-center gap-2 font-normal">
+                      <Checkbox id="gender-female" />
+                      Female{"\n                                      "}
+                    </Label>
+                    <Label className="flex items-center gap-2 font-normal">
+                      <Checkbox id="gender-unisex" />
+                      Unisex{"\n                                      "}
+                    </Label>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="kids">
+                <AccordionTrigger className="text-base">Kids</AccordionTrigger>
+                <AccordionContent>
+                  <div className="grid gap-2">
+                    <Label className="flex items-center gap-2 font-normal">
+                      <Checkbox id="kids-boy" />
+                      Boy{"\n                                      "}
+                    </Label>
+                    <Label className="flex items-center gap-2 font-normal">
+                      <Checkbox id="kids-girl" />
+                      Girl{"\n                                      "}
+                    </Label>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="color">
+                <AccordionTrigger className="text-base">Color</AccordionTrigger>
+                <AccordionContent>
+                  <div className="grid gap-2">
+                    <Label className="flex items-center gap-2 font-normal">
+                      <Checkbox id="color-black" />
+                      Black{"\n                                      "}
+                    </Label>
+                    <Label className="flex items-center gap-2 font-normal">
+                      <Checkbox id="color-red" />
+                      Red{"\n                                      "}
+                    </Label>
+                    <Label className="flex items-center gap-2 font-normal">
+                      <Checkbox id="color-blue" />
+                      Blue{"\n                                      "}
+                    </Label>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>

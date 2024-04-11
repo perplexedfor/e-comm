@@ -1,0 +1,77 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model reviews {
+  id          Int      @id @default(autoincrement())
+  name        String
+  review      String
+  rating      Int
+  created_at  DateTime @default(now())
+  categoryId Int?
+  category   category? @relation(fields: [categoryId], references: [id])
+}
+
+model category {
+  id      Int       @id @default(autoincrement())
+  name    String    @unique
+  reviews reviews[]
+  product product[]
+}
+model product {
+  id          Int      @id @default(autoincrement())
+  name        String  @unique
+  type        String?
+  way        String?
+  imgURL     String?
+  description String?
+  specifications Json?
+  module     String?
+  amp         Int?
+  range       String?
+  category    category @relation(fields: [name], references: [name])
+}
+
+model MCB_DB_BOX {
+  id         Int      @id @default(autoincrement())
+  type      String
+  way      String
+}
+
+model AC_BOX {
+  id         Int      @id @default(autoincrement())
+  type      String
+}
+
+model MODULAR_BOX {
+  id         Int      @id @default(autoincrement())
+  module    String
+}
+
+model MAIN_SWITCH_CHANGEOVER {
+  id         Int      @id @default(autoincrement())
+  amp      Int
+}
+
+model BUS_BAR {
+  id         Int      @id @default(autoincrement())
+  amp Int
+}
+model CIRCUIT_BREAKERS {
+  id         Int      @id @default(autoincrement())
+  type      String
+  description      String
+  range      String
+}
+
