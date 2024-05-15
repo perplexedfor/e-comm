@@ -1,9 +1,13 @@
 
 import { ReactNode } from "react";
 import Link from "next/link";
+// import { createClient } from '@supabase/supabase-js'
+
+
 export interface Category {
   id: number;
   name: string;
+  description: JSON;
 }
 // export const getServerSideProps = async () => {
 //   const category = await prisma.category.findMany()
@@ -12,23 +16,23 @@ export interface Category {
 // }
 
 function Product({ categories }: { categories: Category[]}) {
-  
+const baseUrl = "https://uxzikocsoffozrqooxqy.supabase.co/storage/v1/object/public/categories/";
   return (
     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {categories.map((category) => (
-
-        
         <Link href={`/products/${category.name}`}>
         <div className="flex flex-col items-start gap-1">
-    <img
-      alt="Image"
-      className="aspect-square object-cover rounded-lg overflow-hidden"
-      height="500"
-      src="/cherry.jpg"
-      width="500"
-    />
+        <div className="border">
+      <img
+        alt="Image"
+        className="aspect-square rounded-lg "
+        height="577"
+        src={baseUrl+category.name+".png"}
+       width="433"
+      />
+      </div>
     <div className="space-y-1">
-      <h3 className="font-bold">{category.id}</h3>
+      {/* <h3 className="font-bold">{category.id}</h3> */}
       <p className="text-sm text-gray-500 dark:text-gray-400">
           {category.name}
       </p>
@@ -43,7 +47,7 @@ function Product({ categories }: { categories: Category[]}) {
 }
 
 export default function Products({categories}:{ categories:Category[]}):ReactNode {
-  console.log(categories);
+
   return (
 
     <div className="container grid items-center gap-6 px-4 md:px-6">

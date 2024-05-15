@@ -5,7 +5,6 @@ import { ReactElement, ReactNode, SVGProps } from 'react';
 export default function Header(): ReactNode{
     return (<header className="px-4 lg:px-6 h-14 flex items-center bg-slate-700">
         <Link className="flex items-center justify-center" href="#">
-          <MountainIcon className="h-6 w-6" />
           <span className="sr-only">Acme Inc</span>
         </Link>
         <nav className="ml-auto flex gap-4 sm:gap-6">

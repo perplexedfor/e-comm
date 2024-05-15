@@ -5,17 +5,19 @@ import InputBox from "@/components/review/inputbox"
 import ReviewTab from "@/components/review/reviewtab"
 import Footer from "@/components/footer/footer"
 import prisma from '@/db';
+// import { createClient } from '@supabase/supabase-js'
 
 export async function getComponentDetails() {
   try {
     const category = await prisma.category.findMany();
+    console.log(category);
     return {
       category,
     };
     } catch (e) {
       console.log(e);
     }
-  }
+}
 const getReviews = async () => {
     try {
       const reviews = await prisma.reviews.findMany({
@@ -35,6 +37,11 @@ const getReviews = async () => {
       console.log(e);
     }
   }
+  // const getPublicUrl = async () => {
+  //   const supabase = createClient('your_project_url', 'your_supabase_api_key')
+  // const { data } = supabase.storage.from('product-images').getPublicUrl('mcb-db-1pole-1.jpg')
+  // console.log(data.publicUrl)
+  // }
 
 export default async function Component() {
   const data = await getComponentDetails();
@@ -44,8 +51,16 @@ export default async function Component() {
       <Header/>
       <main className="flex-1">
         <section className="w-full py-12 md:py-24 lg:py-32 border-b">
-          <div className="container grid items-center gap-6 px-4 md:px-6">
+        {/* <Background/> */}
+          <div className="container grid items-center gap-6 px-4 md:px-6 z-1">
             <div className="space-y-2 text-center">
+            <img
+      alt="Image"
+      className=" rounded-lg top-6 md:mx-[40%] absolute"
+      height="50"
+      src="/logo2.png"
+      width="250"
+            />
               <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl">Welcome to the Future</h1>
               <p className="mx-auto max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
                 Discover the latest in cutting-edge technology. Elevate your life with innovation.
@@ -56,13 +71,7 @@ export default async function Component() {
         <section className="w-full py-12 md:py-24 lg:py-32">
           <div className="container grid items-center gap-10 px-4 md:px-6">
             <div className="grid gap-4 md:gap-8 lg:grid-cols-2">
-              <img
-                alt="Image"
-                className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full lg:order-last"
-                height="310"
-                src="/placeholder.svg"
-                width="550"
-              />
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/FSNybHy5vJ0?si=hZEhiYpkIkNlQn2N" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
                   <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">The Future is Now</h2>
