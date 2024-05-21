@@ -6,16 +6,19 @@ const nextConfig = {
       test: /\.svg$/,
       use: ["@svgr/webpack"]
     });
-    config.resolve.fallback = {
-      fs: false,
-      net: false,
-      dns: false,
-      child_process: false,
-      tls: false,
-    };
-
     return config;
-  }
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'uxzikocsoffozrqooxqy.supabase.co',
+        port: '',
+        pathname: '/storage/v1/object/public/**',
+      },
+    ],
+  },
+
 };
 
 export default nextConfig;

@@ -1,33 +1,55 @@
 import { ReactNode } from "react"
 import Star from "@/svgs/Star.svg"
 
-type review = { 
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+
+export type review = { 
   name: string,
   rating: number,
-  review: string
+  review: string,
+  categoryId: number|null,
+  created_at: Date
 }
-const ReviewTab = ({reviews}: {reviews: review[]}):ReactNode => {
+let categories = [
+  { id: 1, name: 'MCB DB BOX' },
+  { id: 2, name: 'AC BOX'  },
+  { id: 6, name: 'MCCB'  },
+  { id: 4, name: 'MAIN SWITCH CHANGEOVER'  },
+  { id: 3, name: 'GI MODULAR BOX'},
+  { id: 5, name: 'BUS BAR' },
+  { id: 7, name: 'MCB' },
+  { id: 8, name: 'ELCB' }
+]
+
+export const ReviewTab = ({reviews}: {reviews: review[] | undefined}):ReactNode => {
     return (
-<div className="container grid items-center gap-6 px-4 md:px-6">
-            <div className="space-y-2 text-center">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Customer Reviews</h2>
-              <p className="mx-auto max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                Don't just take our word for it. Our customers love the products we offer.
-              </p>
-            </div>
-            <div className="mx-auto max-w-lg space-y-4">
+
+            <div className=" max-w-lg space-y-4">
             {
-              reviews.map((review) => (
-                <div className="grid gap-2">
-                  <div className="flex justify-between">{review.name}<span className=" rounded-lg bg-gray-100 px-3 py-1 text-sm dark:bg-blue-400 flex justify-between"><div>{review.rating} stars!!</div><Star width="25px" height="25px"/></span></div>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
-                  {review.review}
-                  </p>
-                </div>
-              ))
+              reviews != undefined ? reviews.map((review) => (
+                <Card className="min-w-[450px] min-h-[150px] lg:min-w-[650px]">
+                  <CardHeader>
+                    <CardTitle><div className="flex justify-between text-base"><div>{review.name}</div><div className="font-weight-thin">{review.created_at.toString().substring(0,3)+", "+review.created_at.toString().substring(3,16)}</div></div></CardTitle>
+                    <CardDescription className="flex max-w-[50px]">{review.rating}<Star className="h-[25px]"></Star></CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                   <p>{review.review}</p>
+                  </CardContent>
+                  <CardFooter>
+                   {/* <h1>{categories[review.categoryId  - 1].name}</h1> */}
+                  </CardFooter>
+                </Card>
+              )) : <div>No reviews</div>
             }
             </div>
-          </div>
+          
     )
 }
 

@@ -1,3 +1,5 @@
+import { JsonValue } from "@prisma/client/runtime/library";
+
 export function Product({ categories }: { categories: Category[]}) {
   
   return (
@@ -28,6 +30,7 @@ export interface ProductProps {
     id: number;
     name: string;
 }
+
 export interface Category {
   id: number;
   name: string;

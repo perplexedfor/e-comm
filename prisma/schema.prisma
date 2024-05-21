@@ -34,31 +34,37 @@ model category {
 model MCB_DB_BOX {
   id         Int      @id @default(autoincrement())
   type      String
+  size     Int?
+  description Json?
 }
 
 model AC_BOX {
   id         Int      @id @default(autoincrement())
   type      String
+  size     Int?
 }
 
-model MODULAR_BOX {
+model GI_MODULAR_BOX {
   id         Int      @id @default(autoincrement())
-  module    String
+  type      String
+  size     Int?
+  description Json?
 }
 
 model MAIN_SWITCH_CHANGEOVER {
   id         Int      @id @default(autoincrement())
-  amp      Int
+  type      String
+  size     Int?
 }
 
 model BUS_BAR {
   id         Int      @id @default(autoincrement())
-  amp Int
+  type     String
+  size     Int?
 }
 model CIRCUIT_BREAKERS {
   id         Int      @id @default(autoincrement())
   type      String
-  description  String
-  range      String
+  size    Int?
 }
 
