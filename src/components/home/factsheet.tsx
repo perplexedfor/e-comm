@@ -42,8 +42,8 @@ import {
                 <Table key={index}>
                   <TableHead className="text-lg md:text-xl lg:text-2xl underline decoration-2">{head[index]}</TableHead>
                   <TableBody>
-                    {Object.entries(table).map(([key, value]) => (
-                      <TableRow key={key} className="hover:bg-teal-400">
+                    {Object.entries(table).map(([key, value],index) => (
+                      <TableRow key={index} className="hover:bg-teal-400">
                         <TableCell className="font-medium">{key.replace(/_/g, " ")}</TableCell>
                         <TableCell>{value}</TableCell>
                       </TableRow>
