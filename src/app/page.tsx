@@ -63,7 +63,7 @@ export default async function Component() {
           <div className="flex justify-center">
             <div className="flex flex-col md:flex-row mx-24">
               <div className="bg-black  md:rounded-l-xl px-[20px] max-w-[50%]">
-                <iframe width="550" height="450" src="https://www.youtube.com/embed/FSNybHy5vJ0?si=hZEhiYpkIkNlQn2N" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                <iframe width="550" height="450" src="https://www.youtube.com/embed/FSNybHy5vJ0?si=hZEhiYpkIkNlQn2N" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
               </div>
               <div className="flex flex-col justify-center space-y-4 bg-blue-500 md:rounded-r-xl  w-[570px] h-[450px] px-4">
                 <div className="space-y-2">
