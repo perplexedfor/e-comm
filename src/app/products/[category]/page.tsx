@@ -112,7 +112,7 @@ export default async function Component(params: { params: { category: string }})
               <h2 className="font-semibold text-2xl lg:text-3xl">Specifications</h2>
               <div className="grid md:grid-cols-2 gap-4">
                 {Object.keys(user?.description).map((key) => (
-                  <div className="grid gap-1">
+                  <div className="grid gap-1" key={key}>
                     <p className="text-sm font-medium">{key}</p>
                     <p>{user?.description[key]}</p>
                   </div>

@@ -57,7 +57,7 @@ export default function ProductImage(parameter: {parameter:{ id: number; type: s
         <div className="overflow-y-scroll max-h-[500px]">
         {types.length !== 1 ? (
           types.map((type, index) => (
-            <Card>
+            <Card key={index}>
               <CardTitle className="text-base px-2">{type.replace(/_/g, " ")}</CardTitle>
               <CardContent>
               <Image
@@ -85,7 +85,7 @@ export default function ProductImage(parameter: {parameter:{ id: number; type: s
                     <h2 className="font-semibold text-2xl lg:text-3xl">Specifications</h2>
                     <div className="grid md:grid-cols-2 gap-4">
                 {Object.keys(parameter?.parameter[current].description).map((key) => (
-                  <div className="grid gap-1">
+                  <div className="grid gap-1" key={key}>
                     <p className="text-sm font-medium">{key}</p>
                     <p>{parameter.parameter[current].description[key]}</p>
                   </div>

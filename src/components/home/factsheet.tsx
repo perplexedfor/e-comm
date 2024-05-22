@@ -39,7 +39,7 @@ import {
         <div>
             {
             tables.map((table,index) => (
-                <Table>
+                <Table key={index}>
                   <TableHead className="text-lg md:text-xl lg:text-2xl underline decoration-2">{head[index]}</TableHead>
                   <TableBody>
                     {Object.entries(table).map(([key, value]) => (

@@ -33,8 +33,8 @@ export const ReviewTab = ({reviews}: {reviews: review[] | undefined}):ReactNode 
 
             <div className=" max-w-lg space-y-4">
             {
-              reviews != undefined ? reviews.map((review) => (
-                <Card className="min-w-[450px] min-h-[150px] lg:min-w-[650px]">
+              reviews != undefined ? reviews.map((review,index) => (
+                <Card className="min-w-[450px] min-h-[150px] lg:min-w-[650px]" key={index}>
                   <CardHeader>
                     <CardTitle><div className="flex justify-between text-base"><div>{review.name}</div><div className="font-weight-thin">{review.created_at.toString().substring(0,3)+", "+review.created_at.toString().substring(3,16)}</div></div></CardTitle>
                     <CardDescription className="flex max-w-[50px]">{review.rating}<Star className="h-[25px]"></Star></CardDescription>

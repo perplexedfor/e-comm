@@ -84,7 +84,7 @@ export default async function Component() {
           <div className="container grid items-center gap-6 px-4 md:px-6 bg-gray-200 mx-auto text-center ml-4 rounded-l-3xl">
             <div className="space-y-2 mx-[5%]">
               <h2 className="mx-auto text-3xl font-bold  sm:text-4xl md:text-5xl">About</h2>
-              <p className=" max-w-[1200px] text-indige-950 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed ">
+              <p className="max-w-[1200px] text-indige-950 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed ">
               “Eletrax Industries” was established in the year 2004. We are involved in Manufacturing a wide range of MCB Boxes, AC Box, Modular Boxes, Junction Box etc. Manufacturing of the offered product is done as per the set industry standards, by our well trained professionals, employing the highest grade raw materials and progressive machines. Offered products are highly appreciated across the market for their features like optimum quality and reliable performance. Apart from this, we are providing these items at leading market price. The highly advanced infrastructure facility has been segmented into various functional units, for reasons of attaining reliable, smoother and hassle free management of the production operations. For achieving our well defined objective, our infrastructure unit has been equipped with all the necessary and modern technology based machines and equipment. Further, our highly ethical working approach has enabled us in generating a huge clientele across the nation. Our team members use their profound domain knowledge to gauge the variegated demands of the clients and co-operate each other for achieving a common goal.
 Our owner, 
               </p>
