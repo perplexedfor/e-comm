@@ -17,14 +17,17 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { Separator } from "@/components/ui/separator"
+import { JsonValue } from "@prisma/client/runtime/library"
 
-export default function ProductImage(parameter: {parameter:{ id: number; type: string; size: number | null; }[]} | undefined ) {
+export default function ProductImage(parameter: {parameter:{ id: number; type: string; size: number | null; description: JsonValue | null}[]} | undefined ) {
     const regex = /\s/g;
     let types: string[];
     types = [];
     if(parameter){
     types = parameter.parameter.map((product) => product.type.replace(regex, '')); 
     }
+    console.log(types)
 
     const baseUrl = "https://uxzikocsoffozrqooxqy.supabase.co/storage/v1/object/public/product-images/";
     const [current, setCurrent] = useState(0);
@@ -36,12 +39,14 @@ export default function ProductImage(parameter: {parameter:{ id: number; type: s
               {parameter?.parameter[current].size == undefined ? null :
               Array.from({ length:parameter?.parameter[current].size}).map((_, i) => (
               <CarouselItem className="flex flex-col aspect-square items-center justify-center p-6" key="i">
-              <Image 
-                src={`${baseUrl}${types[current]}-${i+1}.png`} 
-                alt={types[current]} 
-                width={350} 
-                height={400} 
+                
+                  <Image 
+                src = {`${baseUrl}${types[current]}-${i+1}.png`} 
+                alt = {types[current]} 
+                width = {350} 
+                height = {400} 
               />
+              
               <div className="text-xl font-semibold text-gray-700">{i+1+" "}of{" "+parameter?.parameter[current].size}</div>
               </CarouselItem>
               ))}
@@ -71,8 +76,22 @@ export default function ProductImage(parameter: {parameter:{ id: number; type: s
         </div>
       </div>
       <div className="text-xl underline">
-        {types[current].replace(/_/g, " ")}
+        {types[current].replace(/-/g, " ")}
       </div>
+      
+              {parameter?.parameter[current].description != undefined ?
+                  
+                    <div className="grid gap-4" id="specifications">
+                    <h2 className="font-semibold text-2xl lg:text-3xl">Specifications</h2>
+                    <div className="grid md:grid-cols-2 gap-4">
+                {Object.keys(parameter?.parameter[current].description).map((key) => (
+                  <div className="grid gap-1">
+                    <p className="text-sm font-medium">{key}</p>
+                    <p>{parameter.parameter[current].description[key]}</p>
+                  </div>
+                ))} </div>
+          </div>: null
+              }
       </div>
     )
 }

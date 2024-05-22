@@ -22,7 +22,7 @@ export async function createReview(formInput: FormData) {
         category: Number(formInput.get('id'))
     });
     if (!val.success) {
-        toast(val.error.issues[0].message.toString());
+        toast.error(val.error.issues[0].message.toString());
         // toast(val.error, { type: "error" });
         return;
     }

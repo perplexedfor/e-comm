@@ -43,6 +43,23 @@ model AC_BOX {
   type      String
   size     Int?
 }
+model MCCB {
+  id         Int      @id @default(autoincrement())
+  type      String
+  size     Int?
+}
+
+model ELCB  {
+  id         Int      @id @default(autoincrement())
+  type      String
+  size     Int?
+}
+
+model MCB {
+  id         Int      @id @default(autoincrement())
+  type      String
+  size     Int?
+}
 
 model GI_MODULAR_BOX {
   id         Int      @id @default(autoincrement())
@@ -61,10 +78,5 @@ model BUS_BAR {
   id         Int      @id @default(autoincrement())
   type     String
   size     Int?
-}
-model CIRCUIT_BREAKERS {
-  id         Int      @id @default(autoincrement())
-  type      String
-  size    Int?
 }
 

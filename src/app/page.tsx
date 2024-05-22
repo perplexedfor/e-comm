@@ -4,6 +4,7 @@ import Products from "@/components/home/products"
 import InputBox from "@/components/review/inputbox"
 import ReviewTab from "@/components/review/reviewtab"
 import Footer from "@/components/footer/footer"
+import { Factsheet } from "@/components/home/factsheet"
 import prisma from '@/db';
 
 export async function getComponentDetails() {
@@ -66,7 +67,7 @@ export default async function Component() {
               </div>
               <div className="flex flex-col justify-center space-y-4 bg-blue-500 md:rounded-r-xl  w-[570px] h-[450px] px-4">
                 <div className="space-y-2">
-                  <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl ">Explore the Manufacturing unit</h2>
+                  <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl ">Explore our Manufacturing unit</h2>
                   <p className="max-w-[600px] text-gray-800 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed ">
                     Our commitment to excellence means you get the best technology has to offer. Experience the
                     difference with our state-of-the-art devices.
@@ -93,15 +94,21 @@ Our owner,
           <div className="bg-[url('/background2.jpg')] w-[25%] mr-4 rounded-r-3xl">
           </div>
         </section>
+        <section className="flex justify-center ">
+          <div className=" md:min-w-[750px] lg:min-w-[1000px] my-4 px-4">
+          <div className="text-center text-3xl">Fact Sheet</div>
+          <Factsheet/>
+          </div>
+        </section>
         <section className="w-full py-12 md:py-24 lg:py-32 border-t">
           <div className="container grid items-center gap-6 px-4 md:px-6">
           <div className="space-y-2 text-center ">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl flex justify-center">Customer Reviews</h2>
-              <p className="mx-auto max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400 flex justify-center">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl flex justify-center   ">Customer Reviews</h2>
+              <p className=" max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400 flex justify-center mx-auto">
                 Don't just take our word for it. Our customers love the products we offer.
               </p>
           </div>
-          <div className="flex justify-center">
+          <div className="flex justify-center" id="review">
             <ReviewTab reviews={reviews?.reviews}/>
           </div>
           </div>

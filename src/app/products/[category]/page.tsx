@@ -50,7 +50,7 @@ const getReviewsCat = async (user:{id: number,name: string, description: JsonVal
 export default async function Component(params: { params: { category: string }}) {
 
   const products = await getproductDetails(params.params.category);
-  console.log(products);
+  console.log(products)
   const categoriesdes = await getComponentDetails();
   let user;
   if(categoriesdes){
@@ -58,10 +58,11 @@ export default async function Component(params: { params: { category: string }})
   }
   let reviews:review[]|undefined;
   if(user){
+    console.log(user);
     const val = await getReviewsCat(user);
     if(val) reviews  =  val;
   }
-  if(reviews != undefined) console.log(reviews);
+  // if(reviews != undefined) console.log(reviews);
   return (
     <div>
       <div>
@@ -81,7 +82,7 @@ export default async function Component(params: { params: { category: string }})
                 categoriesdes?.category.map((category) => (
                   <DropdownMenuItem>
                     <Link className="font-semibold cursor-pointer " href={category.name}>
-                    {category.name.replace(/_/g, " ")}
+                    {category.name.replace(/-/g, " ")}
                     </Link>
                     </DropdownMenuItem>
                 ))
@@ -106,27 +107,19 @@ export default async function Component(params: { params: { category: string }})
               <ProductImage parameter={products}/>
           </div>
           <Separator className="border-t" />
-          <div className="grid gap-4" id="specifications">
-            <h2 className="font-semibold text-2xl lg:text-3xl">Specifications</h2>
-            <div className="grid md:grid-cols-2 gap-4">
-            <div className="grid gap-1">
-                <p className="text-sm font-medium">features</p>
-                <p>{user?.description?.description}</p>
-              </div>
-              <div className="grid gap-1">
-                <p className="text-sm font-medium">Brand</p>
-                <p>{user?.description?.brand}</p>
-              </div>
-              <div className="grid gap-1">
-                <p className="text-sm font-medium">Material</p>
-                <p>{user?.description?.material}</p>
-              </div>
-              <div className="grid gap-1">
-                <p className="text-sm font-medium">features</p>
-                <p>{user?.description?.features}</p>
-              </div>
-            </div>
-          </div>
+              {user?.description != undefined ?
+              <div className="grid gap-4" id="specifications">
+              <h2 className="font-semibold text-2xl lg:text-3xl">Specifications</h2>
+              <div className="grid md:grid-cols-2 gap-4">
+                {Object.keys(user?.description).map((key) => (
+                  <div className="grid gap-1">
+                    <p className="text-sm font-medium">{key}</p>
+                    <p>{user?.description[key]}</p>
+                  </div>
+                ))}
+                </div>
+                </div> : null
+              }
           <Separator className="border-t" />
           
           <div className="" id="reviews">
