@@ -13,6 +13,48 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { toast } from "sonner"
 
+export async function getproductDetails(name: string) {
+    switch (name) {
+      case "AC_BOX":
+        try {
+          const products = await prisma.aC_BOX.findMany();
+          console.log(products);
+          return products
+          ;
+          } catch (e) {
+          console.log(e);
+          }
+      case "GI_MODULAR_BOX":
+        try {
+          const products = await prisma.gI_MODULAR_BOX.findMany();
+          console.log(products);
+          return products;
+          } catch (e) {
+          console.log(e);
+          }
+      case "MAIN_SWITCH_CHANGEOVER":
+        try {
+          const products = await prisma.mAIN_SWITCH_CHANGEOVER.findMany();
+          return products;
+          } catch (e) {
+          console.log(e);
+          }
+      case "BUS_BAR":
+        try {
+          const products = await prisma.bUS_BAR.findMany();
+          return products;
+          } catch (e) {
+          console.log(e);
+          }
+      case "MCB_DB_BOX":
+        try {
+          const products = await prisma.mCB_DB_BOX.findMany();
+          return products;
+          } catch (e) {
+          console.log(e);
+          }
+      }
+}
 export async function createReview(formInput: FormData) {
     console.log(formInput);
     const val = ReviewSchema.safeParse({

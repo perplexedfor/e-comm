@@ -34,49 +34,55 @@ model category {
 model MCB_DB_BOX {
   id         Int      @id @default(autoincrement())
   type      String
-  size     Int?
+  size     Int
   description Json?
 }
 
 model AC_BOX {
   id         Int      @id @default(autoincrement())
   type      String
-  size     Int?
+  size     Int
+  description Json?
 }
 model MCCB {
   id         Int      @id @default(autoincrement())
   type      String
-  size     Int?
+  size     Int
+  description Json?
 }
 
 model ELCB  {
   id         Int      @id @default(autoincrement())
   type      String
-  size     Int?
+  size     Int
+  description Json?
 }
 
 model MCB {
   id         Int      @id @default(autoincrement())
   type      String
-  size     Int?
+  size     Int
+  description Json?
 }
 
 model GI_MODULAR_BOX {
   id         Int      @id @default(autoincrement())
   type      String
-  size     Int?
+  size     Int
   description Json?
 }
 
 model MAIN_SWITCH_CHANGEOVER {
   id         Int      @id @default(autoincrement())
   type      String
-  size     Int?
+  size     Int
+  description Json?
 }
 
 model BUS_BAR {
   id         Int      @id @default(autoincrement())
   type     String
-  size     Int?
+  size     Int
+  description Json?
 }
 

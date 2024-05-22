@@ -17,18 +17,39 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { Separator } from "@/components/ui/separator"
 import { JsonValue } from "@prisma/client/runtime/library"
+interface DescriptionObject {
+  [key: string]: any;
+}
 
-export default function ProductImage(parameter: {parameter:{ id: number; type: string; size: number | null; description: JsonValue | null}[]} | undefined ) {
+export default function ProductImage(parameter: {parameter:{ id: number; type: string; size: number; description: JsonValue | null}[]} ) {
     const regex = /\s/g;
     let types: string[];
     types = [];
     if(parameter){
     types = parameter.parameter.map((product) => product.type.replace(regex, '')); 
     }
-    console.log(types)
-
+    console.log(types);
+    let sizes: number[];
+    sizes = parameter.parameter.map((product) => product.size);
+    let descriptionObject:DescriptionObject[];
+    descriptionObject = parameter.parameter.map((product) => {
+      try {
+        return product.description as Object;
+      } catch (error) {
+        console.error(`Failed to parse product.description: ${product.description}`);
+        return {};
+      }
+    });
+    for(let i = 0; i < descriptionObject.length; i++){
+      if(descriptionObject[i] == null){
+        descriptionObject[i] = {};
+      }
+      // else{
+      //   descriptionObject[i] = JSON.parse(descriptionObject[i] as string);
+      // }
+    }
+    console.log(descriptionObject);
     const baseUrl = "https://uxzikocsoffozrqooxqy.supabase.co/storage/v1/object/public/product-images/";
     const [current, setCurrent] = useState(0);
     return (
@@ -36,18 +57,16 @@ export default function ProductImage(parameter: {parameter:{ id: number; type: s
       <div className="flex flex-row justify-between">
         <Carousel className="max-w-sm md:max-w-md lg:max-w-lg border">
               <CarouselContent className="">
-              {parameter?.parameter[current].size == undefined ? null :
-              Array.from({ length:parameter?.parameter[current].size}).map((_, i) => (
-              <CarouselItem className="flex flex-col aspect-square items-center justify-center p-6" key="i">
-                
+              {parameter.parameter[current].size == null ? null :
+              Array.from({ length:sizes[current]}).map((_, i) => (
+              <CarouselItem className="flex flex-col aspect-square items-center justify-center p-6" key={i}>
                   <Image 
                 src = {`${baseUrl}${types[current]}-${i+1}.png`} 
                 alt = {types[current]} 
                 width = {350} 
                 height = {400} 
               />
-              
-              <div className="text-xl font-semibold text-gray-700">{i+1+" "}of{" "+parameter?.parameter[current].size}</div>
+              <div className="text-xl font-semibold text-gray-700">{i+1+" "}of{" "+sizes[current]}</div>
               </CarouselItem>
               ))}
               </CarouselContent>
@@ -79,18 +98,17 @@ export default function ProductImage(parameter: {parameter:{ id: number; type: s
         {types[current].replace(/-/g, " ")}
       </div>
       
-              {parameter?.parameter[current].description != undefined ?
-                  
+              {
                     <div className="grid gap-4" id="specifications">
                     <h2 className="font-semibold text-2xl lg:text-3xl">Specifications</h2>
                     <div className="grid md:grid-cols-2 gap-4">
-                {Object.keys(parameter?.parameter[current].description).map((key) => (
+                {Object.keys(descriptionObject[current]).map((key) => (
                   <div className="grid gap-1" key={key}>
                     <p className="text-sm font-medium">{key}</p>
-                    <p>{parameter.parameter[current].description[key]}</p>
+                    <p>{descriptionObject[current][key]}</p>
                   </div>
                 ))} </div>
-          </div>: null
+          </div>
               }
       </div>
     )
