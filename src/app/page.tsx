@@ -1,4 +1,4 @@
-
+"use server"
 import Header  from "@/components/home/header"
 import Products from "@/components/home/products"
 import InputBox from "@/components/review/inputbox"

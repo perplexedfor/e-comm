@@ -1,4 +1,4 @@
-
+"use server"
 import { Separator } from "@/components/ui/separator"
 import InputBox  from "@/components/review/inputbox"
 import Link from "next/link"
