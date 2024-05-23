@@ -11,7 +11,7 @@ const ReviewSchema = z.object({
 
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import { toast } from "sonner"
+
 import { reviews } from '@prisma/client';
 export async function getproductDetails(name: string) {
     switch (name) {
@@ -55,18 +55,16 @@ export async function getproductDetails(name: string) {
           }
       }
 }
-export async function createReview(formInput: FormData) {
-    console.log(formInput);
+export async function createReview(value:{ name: string, message: string,rating : string,id: string} ) {
+    console.log(value);
     const val = ReviewSchema.safeParse({
-        name: formInput.get('name'),
-        rating: Number(formInput.get('rating')),
-        message: formInput.get('message'),
-        category: Number(formInput.get('id'))
+        name: value['name'],
+        rating: Number(value['rating']),
+        message: value['message'],
+        category: Number(value['id'])
     });
     if (!val.success) {
-        toast.error(val.error.issues[0].message.toString());
-        // toast(val.error, { type: "error" });
-        return;
+        return val.error.issues[0].message.toString();
     }
     
     const { name, rating, message, category } = val.data;
@@ -89,13 +87,5 @@ export async function createReview(formInput: FormData) {
         }
     });
   }
-
-    formInput.set('name', '');
-    formInput.set('rating', '');
-    formInput.set('message', '');
     revalidatePath('/');
-    redirect('/');
-
-
-
 }

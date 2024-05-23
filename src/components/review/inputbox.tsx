@@ -1,10 +1,10 @@
-
+"use client"
 import { ReactNode } from "react"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
+import { toast } from "sonner"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
-
 import {
     Select,
     SelectContent,
@@ -12,6 +12,8 @@ import {
     SelectTrigger,
     SelectValue,
   } from "@/components/ui/select"
+import { ChangeEventHandler, useState } from "react";
+// import { router } from "next/client";
 
 import { createReview } from "../../app/lib/action"
 
@@ -26,24 +28,31 @@ let categories = [
       { id: 8, name: 'ELCB' }
     ]
 
-
 const InputBox = (): ReactNode => {
+    const [name, setName] = useState("");
+    const [message, setMessage] = useState("");
+    const [rating, setRating] = useState("");
+    const [id, setId] = useState("");
     return (
 <div className="mx-auto w-full max-w-sm space-y-2">
-<form className="grid gap-4" action={createReview}>
+{/* action={createReview} */}
+<form className="grid gap-4" >
     <div className="grid gap-2">
-        <Label htmlFor="name">Name</Label>
-        <Input id="name" name="name" placeholder="Enter your name" required  />
+        <LabelledInput onChange={(e) => {
+                            setName(e.target.value);
+                        }} label="Username" placeholder="Name" />
     </div>
     
     <div className="grid gap-2">
         <Label htmlFor="message">Message</Label>
-        <Textarea id="message" name="message" placeholder="Enter your message" required />
+        <Textarea id="message" name="message" placeholder="Enter your message" onChange={(e) => {
+                            setMessage(e.target.value);
+                        }} required />
     </div>
     <div className="flex flex-row justify-between">
-        <Select name="rating">
+        <Select name="rating" value={rating} onValueChange={setRating} >
         <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Rating" />
+            <SelectValue placeholder="Rating"/>
         </SelectTrigger>
         <SelectContent>
             <SelectItem value="5">5</SelectItem>
@@ -53,7 +62,7 @@ const InputBox = (): ReactNode => {
             <SelectItem value="1">1</SelectItem>
         </SelectContent>
         </Select>
-        <Select name="id">
+        <Select name="id" value={id} onValueChange={setId}>
             <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="Product" />
             </SelectTrigger>
@@ -65,9 +74,29 @@ const InputBox = (): ReactNode => {
             </SelectContent>
         </Select>
     </div>
-    <Button type="submit">Submit</Button>
+    <Button type="submit" onClick={async () => {
+    let res = await createReview({name:name, message:message, rating:rating, id:id});
+    if(res){
+        toast.error(res);
+    }
+    else{
+        toast.success("Review Created");
+    }}}>Submit</Button>
 </form>
 </div>)
+}
+
+function LabelledInput({ label, placeholder, type, onChange }: LabelledInputType) {
+    return <div>
+        <label className="block mb-2 text-sm text-black font-semibold pt-4">{label}</label>
+        <Input onChange={onChange} type={type || "text"} id="first_name" placeholder={placeholder} required />
+    </div>
+}
+interface LabelledInputType {
+    label: string;
+    placeholder: string;
+    type?: string;
+    onChange: ChangeEventHandler<HTMLInputElement>
 }
 
 export default InputBox;
