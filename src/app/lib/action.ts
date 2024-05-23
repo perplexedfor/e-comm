@@ -12,7 +12,7 @@ const ReviewSchema = z.object({
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { toast } from "sonner"
-
+import { reviews } from '@prisma/client';
 export async function getproductDetails(name: string) {
     switch (name) {
       case "AC_BOX":
@@ -70,7 +70,7 @@ export async function createReview(formInput: FormData) {
     }
     
     const { name, rating, message, category } = val.data;
-    let review;
+    let review:reviews;
     if(category === 0){
     review = await prisma.reviews.create({
         data: {
@@ -89,12 +89,13 @@ export async function createReview(formInput: FormData) {
         }
     });
   }
-    console.log(review);
+
     formInput.set('name', '');
     formInput.set('rating', '');
     formInput.set('message', '');
     revalidatePath('/');
     redirect('/');
+
 
 
 }
