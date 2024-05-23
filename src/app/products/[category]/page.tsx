@@ -1,4 +1,4 @@
-"use server"
+
 import { Separator } from "@/components/ui/separator"
 import InputBox  from "@/components/review/inputbox"
 import Link from "next/link"
@@ -53,7 +53,6 @@ const getReviewsCat = async (user:{id: number,name: string, description: JsonVal
 
 export default async function Component(params: { params: { category: string }}) {
   const products = await getproductDetails(params.params.category);
-  console.log(products)
   const categoriesdes = await getComponentDetails();
   let user;
   if(categoriesdes){
@@ -61,11 +60,9 @@ export default async function Component(params: { params: { category: string }})
   }
   let reviews:review[]|undefined;
   if(user){
-    console.log(user);
     const val = await getReviewsCat(user);
     if(val) reviews  =  val;
   }
-  // if(reviews != undefined) console.log(reviews);
   return (
     <div>
       <div>

@@ -29,9 +29,10 @@ export default function ProductImage(parameter: {parameter:{ id: number; type: s
     if(parameter){
     types = parameter.parameter.map((product) => product.type.replace(regex, '')); 
     }
-    console.log(types);
+
     let sizes: number[];
     sizes = parameter.parameter.map((product) => product.size);
+
     let descriptionObject:DescriptionObject[];
     descriptionObject = parameter.parameter.map((product) => {
       try {
@@ -54,7 +55,10 @@ export default function ProductImage(parameter: {parameter:{ id: number; type: s
     const [current, setCurrent] = useState(0);
     return (
       <div>
-      <div className="flex flex-row justify-between">
+      <div className="text-xl underline">
+        {types[current].replace(/-/g, " ")}
+      </div>
+      <div className="flex flex-col md:flex-row justify-between">
         <Carousel className="max-w-sm md:max-w-md lg:max-w-lg border">
               <CarouselContent className="">
               {parameter.parameter[current].size == null ? null :
@@ -73,7 +77,7 @@ export default function ProductImage(parameter: {parameter:{ id: number; type: s
               <CarouselPrevious className="ml-12" />
               <CarouselNext className="mr-12" />
         </Carousel>
-        <div className="overflow-y-scroll max-h-[500px]">
+        <div className="overflow-y-scroll max-h-[250px] md:max-h-[500px]">
         {types.length !== 1 ? (
           types.map((type, index) => (
             <Card key={index}>
@@ -94,9 +98,7 @@ export default function ProductImage(parameter: {parameter:{ id: number; type: s
         ) : null}
         </div>
       </div>
-      <div className="text-xl underline">
-        {types[current].replace(/-/g, " ")}
-      </div>
+      
       
               {
                     <div className="grid gap-4" id="specifications">

@@ -10,13 +10,18 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { JsonValue } from "@prisma/client/runtime/library";
 
-import { Category } from "./product";
 // export const getServerSideProps = async () => {
 //   const category = await prisma.category.findMany()
 
 //   return {  props: category }
 // }
+type Category = {
+  id: number;
+  name: string;
+  description: JsonValue;
+}
 
 function Product({ categories }: { categories: Category[] | undefined}) {
 const baseUrl = "https://uxzikocsoffozrqooxqy.supabase.co/storage/v1/object/public/categories/";
@@ -30,9 +35,9 @@ const baseUrl = "https://uxzikocsoffozrqooxqy.supabase.co/storage/v1/object/publ
                   <img
                   alt="Image"
                   className="aspect-square rounded-lg"
-                  height="577"
+                  height="380"
                   src={baseUrl+category.name+".png"}
-                  width="433"
+                  width="330"
                   />
                   </CardContent>
                   <CardFooter>
@@ -51,11 +56,11 @@ export default function Products({categories}:{ categories:Category[]|undefined}
 
   return (
 
-    <div className="container grid items-center gap-6 px-4 md:px-6">
+    <div className="container grid items-center gap-6 sm:px-4 md:px-6">
             <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mx-[5%]">Discover Our Products</h2>
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Discover Our Products</h2>
             </div>
-            <div className="space-y-2 mx-[5%]">
+            <div className="space-y-2">
               <Product categories={categories}/>
             </div>
       </div>

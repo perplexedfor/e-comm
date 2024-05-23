@@ -1,4 +1,3 @@
-"use server"
 import Header  from "@/components/home/header"
 import Products from "@/components/home/products"
 import InputBox from "@/components/review/inputbox"
@@ -60,28 +59,15 @@ export default async function Component() {
           </div>
         </section>
         <section className="w-full py-12 md:py-24 lg:py-32">
-          <div className="flex justify-center">
-            <div className="flex flex-col md:flex-row mx-24">
-              <div className="bg-black  md:rounded-l-xl px-[20px] max-w-[50%]">
-                <iframe width="550" height="450" src="https://www.youtube.com/embed/FSNybHy5vJ0?si=hZEhiYpkIkNlQn2N" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-              </div>
-              <div className="flex flex-col justify-center space-y-4 bg-blue-500 md:rounded-r-xl  w-[570px] h-[450px] px-4">
-                <div className="space-y-2">
-                  <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl ">Explore our Manufacturing unit</h2>
-                  <p className="max-w-[600px] text-gray-800 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed ">
-                    Our commitment to excellence means you get the best technology has to offer. Experience the
-                    difference with our state-of-the-art devices.
-                  </p>
-                </div>
-              </div>
-            </div>
+          <div className="relative pt-[25px] pb-[56.25%]">
+                <iframe src="https://www.youtube.com/embed/FSNybHy5vJ0?si=hZEhiYpkIkNlQn2N" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen className="absolute top-0 left-0 w-[100%] h-[100%]"></iframe>
           </div>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32 border-t ">
+        <section className="w-full py-12 md:py-24 lg:py-32 border-t relative">
           <Products categories={data?.category}/>
         </section>
         <section className="w-full py-12 md:py-24 lg:py-32 border-t bg-gradient-to-r from-blue-200 via-indigo-300 to-teal-400 flex flex-row " id="about" >
-          <div className="container grid items-center gap-6 px-4 md:px-6 bg-gray-200 mx-auto text-center ml-4 rounded-l-3xl">
+          <div className="container grid items-center gap-6 px-4 md:px-6 bg-gray-200 mx-auto text-center ml-4 rounded-l-3xl relative">
             <div className="space-y-2 mx-[5%]">
               <h2 className="mx-auto text-3xl font-bold  sm:text-4xl md:text-5xl">About</h2>
               <p className="max-w-[1200px] text-indige-950 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed ">
@@ -101,7 +87,7 @@ Our owner,
           </div>
         </section>
         <section className="w-full py-12 md:py-24 lg:py-32 border-t">
-          <div className="container grid items-center gap-6 px-4 md:px-6">
+          <div className="container grid items-center gap-6 md:px-6">
           <div className="space-y-2 text-center ">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl flex justify-center   ">Customer Reviews</h2>
               <p className=" max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400 flex justify-center mx-auto">
@@ -129,11 +115,7 @@ Our owner,
     </div>
   )
 }
-  // const getPublicUrl = async () => {
-  //   const supabase = createClient('your_project_url', 'your_supabase_api_key')
-  // const { data } = supabase.storage.from('product-images').getPublicUrl('mcb-db-1pole-1.jpg')
-  // console.log(data.publicUrl)
-  // }
+
 
 
 

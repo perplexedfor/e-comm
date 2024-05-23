@@ -17,6 +17,8 @@ export type review = {
   categoryId: number|null,
   created_at: Date
 }
+
+
 let categories = [
   { id: 1, name: 'MCB DB BOX' },
   { id: 2, name: 'AC BOX'  },
@@ -31,13 +33,13 @@ let categories = [
 export const ReviewTab = ({reviews}: {reviews: review[] | undefined}):ReactNode => {
     return (
 
-            <div className=" max-w-lg space-y-4">
+            <div className="space-y-4">
             {
               reviews != undefined ? reviews.map((review,index) => (
-                <Card className="min-w-[450px] min-h-[150px] lg:min-w-[650px]" key={index}>
+                <Card className="relative min-h-[150px] lg:min-w-[650px]" key={index}>
                   <CardHeader>
                     <CardTitle><div className="flex justify-between text-base"><div>{review.name}</div><div className="font-weight-thin">{review.created_at.toString().substring(0,3)+", "+review.created_at.toString().substring(3,16)}</div></div></CardTitle>
-                    <CardDescription className="flex max-w-[50px]">{review.rating}<Star className="h-[25px]"></Star></CardDescription>
+                    <CardDescription className="flex max-w-[50px]">{review.rating}<Star className="h-[20px]"></Star></CardDescription>
                   </CardHeader>
                   <CardContent>
                    <p>{review.review}</p>

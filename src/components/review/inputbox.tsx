@@ -1,11 +1,9 @@
-"use client"
 
 import { ReactNode } from "react"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
-import { toast } from "sonner"
 
 import {
     Select,
@@ -17,11 +15,11 @@ import {
 
 import { createReview } from "../../app/lib/action"
 
-    let categories = [
+let categories = [
       { id: 1, name: 'MCB_DB_BOX' },
       { id: 2, name: 'AC_BOX'  },
       { id: 6, name: 'MCCB'  },
-      { id: 4, name: 'MAIN_SWITCH_CHANGEOVER'  },
+      { id: 4, name: 'MAIN_SWITCH_CHANGEOVER'},
       { id: 3, name: 'GI_MODULAR_BOX'},
       { id: 5, name: 'BUS_BAR' },
       { id: 7, name: 'MCB' },

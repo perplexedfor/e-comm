@@ -2,7 +2,7 @@
 
 import { z } from 'zod';
 import prisma from '@/db';
-export const ReviewSchema = z.object({
+const ReviewSchema = z.object({
   name: z.string().min(3, { message: 'Name must be at least 3 characters' }),
   rating: z.number(),
   message: z.string().min(15, { message: 'message must be at least 15 characters' }),
