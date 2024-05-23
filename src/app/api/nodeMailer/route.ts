@@ -4,7 +4,7 @@ export default async function POST(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const data = req.body
+  const data = await req.body
   await createReview(data)
   res.status(200).json({ message: 'Review Created' })
 }
