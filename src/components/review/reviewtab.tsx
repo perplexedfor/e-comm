@@ -45,7 +45,7 @@ export const ReviewTab = ({reviews}: {reviews: review[] | undefined}):ReactNode 
                    <p>{review.review}</p>
                   </CardContent>
                   <CardFooter className="text-xs">
-                   <h1>Category: {review.categoryId ? categories[review.categoryId  - 1].name : null}</h1>
+                   <h1>Category: {review.categoryId ? categories[review.categoryId  - 1].name : "General"}</h1>
                   </CardFooter>
                 </Card>
               )) : <div>No reviews</div>

@@ -12,6 +12,7 @@ const nextConfig = {
     return config;
   },
   images: {
+    domains: ['img.youtube.com'],
     remotePatterns: [
       {
         protocol: 'https',

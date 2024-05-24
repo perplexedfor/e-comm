@@ -54,7 +54,7 @@ const InputBox = (): ReactNode => {
         <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Rating"/>
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent className="bg-gray-200">
             <SelectItem value="5">5</SelectItem>
             <SelectItem value="4">4</SelectItem>
             <SelectItem value="3">3</SelectItem>
@@ -63,10 +63,10 @@ const InputBox = (): ReactNode => {
         </SelectContent>
         </Select>
         <Select name="id" value={id} onValueChange={setId}>
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="w-[180px] ">
                 <SelectValue placeholder="Product" />
             </SelectTrigger>
-            <SelectContent className="max-h-[200px]">
+            <SelectContent className="max-h-[200px] bg-gray-200">
                 <SelectItem key="0" value="0">General</SelectItem>
                 {categories.map((category) => (
                     <SelectItem key={category.id} value={category.id.toString()}>{category.name}</SelectItem>

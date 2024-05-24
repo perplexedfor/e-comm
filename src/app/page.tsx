@@ -5,7 +5,7 @@ import ReviewTab from "@/components/review/reviewtab"
 import Footer from "@/components/footer/footer"
 import { Factsheet } from "@/components/home/factsheet"
 import prisma from '@/db';
-
+import Embed from "@/components/home/videoframe"
 
 export async function getComponentDetails() {
   try {
@@ -66,6 +66,7 @@ export default async function Component() {
           </div>
         </section>
         <section className="w-full py-12 md:py-24 lg:py-32">
+          {/* <Embed/> */}
           <div className="relative pt-[25px] pb-[56.25%]">
                 <iframe src="https://www.youtube.com/embed/FSNybHy5vJ0?si=hZEhiYpkIkNlQn2N" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen className="absolute top-0 left-0 w-[100%] h-[100%]"></iframe>
           </div>

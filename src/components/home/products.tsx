@@ -1,6 +1,7 @@
 
 import { ReactNode } from "react";
 import Link from "next/link";
+import Image from "next/image";
 // import { createClient } from '@supabase/supabase-js'
 import {
   Card,
@@ -32,7 +33,7 @@ const baseUrl = "https://uxzikocsoffozrqooxqy.supabase.co/storage/v1/object/publ
         <Link href={`/products/${category.name}`}  className="cursor-pointer transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" key={index}>
                  <Card className="bg-gray-300" key={category.id}>
                   <CardContent className="bg-slate-50">
-                  <img
+                  <Image
                   alt="Image"
                   className="aspect-square rounded-lg"
                   height="380"
