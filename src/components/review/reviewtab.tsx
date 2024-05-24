@@ -36,17 +36,16 @@ export const ReviewTab = ({reviews}: {reviews: review[] | undefined}):ReactNode 
             <div className="space-y-4">
             {
               reviews != undefined ? reviews.map((review,index) => (
-                <Card className="relative min-h-[150px] lg:min-w-[650px]" key={index}>
+                <Card className="relative min-h-[150px] lg:min-w-[650px] bg-neutral-200" key={index}>
                   <CardHeader>
-                    <CardTitle><div className="flex justify-between text-base"><div>{review.name}</div><div className="font-weight-thin">{review.created_at.toString().substring(0,3)+", "+review.created_at.toString().substring(3,16)}</div></div></CardTitle>
-                    <CardDescription className="flex max-w-[50px]">{review.rating}<Star className="h-[20px]"></Star></CardDescription>
+                    <CardTitle><div className="flex justify-between text-base"><div>{review.name}<div className="flex max-w-[50px]">{review.rating}<Star className="h-[20px]"></Star></div></div><div className="font-weight-thin">{review.created_at.toString().substring(0,3)+", "+review.created_at.toString().substring(3,16)}</div></div></CardTitle>
+                    {/* <CardDescription className="flex max-w-[50px]">{review.rating}<Star className="h-[20px]"></Star></CardDescription> */}
                   </CardHeader>
                   <CardContent>
                    <p>{review.review}</p>
                   </CardContent>
-                  <CardFooter>
-
-                   <h1>{review.categoryId ? categories[review.categoryId  - 1].name : null}</h1>
+                  <CardFooter className="text-xs">
+                   <h1>Category: {review.categoryId ? categories[review.categoryId  - 1].name : null}</h1>
                   </CardFooter>
                 </Card>
               )) : <div>No reviews</div>

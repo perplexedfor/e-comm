@@ -6,6 +6,7 @@ import Footer from "@/components/footer/footer"
 import { Factsheet } from "@/components/home/factsheet"
 import prisma from '@/db';
 
+
 export async function getComponentDetails() {
   try {
     const category = await prisma.category.findMany();
@@ -16,10 +17,16 @@ export async function getComponentDetails() {
       console.log(e);
     }
 }
+
 const getReviews = async () => {
     try {
       const reviews = await prisma.reviews.findMany({
         take: 4,
+        where: {
+          rating: {
+            in: [4, 5],
+          },
+        },
         orderBy: {
           rating: 'desc',
         },

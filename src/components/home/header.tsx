@@ -1,4 +1,4 @@
-"use client"
+
 import Link from "next/link"
 import { ReactElement, ReactNode, SVGProps } from 'react';
 
@@ -11,8 +11,8 @@ export default function Header(): ReactNode{
           <Link className="text-sm font-medium hover:underline underline-offset-4 bg-transparent" href="#about">
             About
           </Link>
-          <Link className="text-sm font-medium hover:underline underline-offset-4" href="#contact">
-            Contact
+          <Link className="text-sm font-medium hover:underline underline-offset-4" href="#review">
+            Review
           </Link>
         </nav>
     </header>)

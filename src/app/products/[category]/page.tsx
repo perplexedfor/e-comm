@@ -141,13 +141,10 @@ export default async function Component(params: { params: { category: string }})
         </div>
       <footer className=" w-full h-14 border-t sm:h-20 ">
         <div className="text-sm font-medium items-center flex justify-between lg:justify-center flex-col lg:flex-row mt-4">
-          <Link className="underline px-2" href="#">
+          <Link className="underline px-2" href="/">
             About Us
           </Link>
-          <Link className="underline px-2" href="#">
-            Contact
-          </Link>
-          <Link className="underline px-2" href="#">
+          <Link className="underline px-2" href="/">
             Terms of Service
           </Link>
         </div>

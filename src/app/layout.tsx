@@ -17,6 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <script src="//code.tidio.co/9y8yh11kb4hqdgsrbccktmebkfgf9inl.js" async></script>
       <body >{children}</body>
       <Toaster richColors/>
     </html>
