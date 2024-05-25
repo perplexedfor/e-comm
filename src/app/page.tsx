@@ -6,6 +6,7 @@ import Footer from "@/components/footer/footer"
 import { Factsheet } from "@/components/home/factsheet"
 import prisma from '@/db';
 import Embed from "@/components/home/videoframe"
+import Subfooter from "@/components/footer/subfooter"
 
 export async function getComponentDetails() {
   try {
@@ -74,8 +75,8 @@ export default async function Component() {
         <section className="w-full py-12 md:py-24 lg:py-32 border-t relative">
           <Products categories={data?.category}/>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32 border-t bg-gradient-to-r from-blue-200 via-indigo-300 to-teal-400 flex flex-row " id="about" >
-          <div className="container grid items-center gap-6 px-4 md:px-6 bg-gray-200 mx-auto text-center ml-4 rounded-l-3xl relative">
+        <section className="w-full py-12 md:py-24 lg:py-32 border-t bg-gradient-to-r from-blue-200 via-indigo-300 to-blue-400 flex flex-row " id="about" >
+          <div className="container grid items-center gap-6 px-4 md:px-6 bg-gray-200 mx-auto text-center ml-4 relative">
             <div className="space-y-2 mx-[5%]">
               <h2 className="mx-auto text-3xl font-bold  sm:text-4xl md:text-5xl">About</h2>
               <p className="max-w-[1200px] text-indige-950 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed ">
@@ -85,7 +86,7 @@ Our owner,
               <p className="mx-auto max-w-[600px] text-indigo-950 md:text-lg/relaxed lg:text-text-xl/relaxed xl:text-lg/relaxed ">"Mr. Lalit Goyal" has vast industry experience which influences our team and helps us increase the required skill in providing these products to our clients. Thus, with his management skills, they helped us to achieve success in the market.</p>
             </div>
           </div>
-          <div className="bg-[url('/background2.jpg')] w-[25%] mr-4 rounded-r-3xl">
+          <div className="bg-[url('/background2.jpg')] w-[25%] mr-4 ">
           </div>
         </section>
         <section className="flex justify-center ">
@@ -118,7 +119,9 @@ Our owner,
             <InputBox/>
           </div>
         </section>
+        {/* <Subfooter/> */}
       </main>
+
       <Footer/>
     </div>
   )
