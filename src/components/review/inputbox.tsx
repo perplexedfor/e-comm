@@ -19,13 +19,11 @@ import { createReview } from "../../app/lib/action"
 
 let categories = [
       { id: 1, name: 'MCB_DB_BOX' },
-      { id: 2, name: 'AC_BOX'  },
-      { id: 6, name: 'MCCB'  },
-      { id: 4, name: 'MAIN_SWITCH_CHANGEOVER'},
-      { id: 3, name: 'GI_MODULAR_BOX'},
-      { id: 5, name: 'BUS_BAR' },
-      { id: 7, name: 'MCB' },
-      { id: 8, name: 'ELCB' }
+      { id: 2, name: 'MCB'  },
+      { id: 3, name: 'GI_MUDULAR_BOX'  },
+      { id: 4, name: 'AC_BOX'},
+      { id: 5, name: 'BUS_BAR'},
+      { id: 6, name: 'MAIN_SWITCH_CHANGEOVER' }
     ]
 
 const InputBox = (): ReactNode => {

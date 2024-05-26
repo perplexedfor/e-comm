@@ -1,20 +1,39 @@
 
 import Link from "next/link"
 import { ReactElement, ReactNode, SVGProps } from 'react';
-
+import Image from 'next/image';
+import service from '../../../public/service.png';
+import email from '../../../public/email.png';
+import location from '../../../public/location.png';
 export default function Header(): ReactNode{
-    return (<header className="px-4 lg:px-6 h-14 flex items-center bg-gray-100 shadow-md text-slate-800">
-        <Link className="flex items-center justify-center" href="#">
-          <span className="sr-only">Acme Inc</span>
-        </Link>
-        <nav className="ml-auto flex gap-4 sm:gap-6">
-          <Link className="text-sm font-medium hover:underline underline-offset-4 bg-transparent" href="#about">
-            About
-          </Link>
-          <Link className="text-sm font-medium hover:underline underline-offset-4" href="#review">
-            Review
-          </Link>
-        </nav>
+    return (<header className=" shadow-inner">
+      <div className=" relative flex justify-between">
+      <div className="w-[100%] lg:w-[25%] bg-slate-300 flex flex-col px-[28px] py-[18px]">
+      <div className="text-xl font-bold tracking-tighter sm:text-5xl flex justify-center lg:justify-end"><div className="flex flex-col justify-between text-indigo-950">Eletra</div><span className="text-orange-700 text-4xl sm:text-6xl">X</span></div>
+      <div className="flex justify-center lg:justify-end align-text-top">We make safe homes</div>
+      </div>
+      <div className="bg-gray-200 w-[75%] hidden lg:block">
+        <div className="flex flex-row py-8 pl-4">
+        <div className="flex px-8">
+          <Image src={service} alt="service" objectFit="cover" width={25}/>
+          <div className="pl-2">+91 8588039372</div>
+        </div>
+        <div className="bg-gray-300 w-[1px]">
+          </div>
+        <div className="flex px-8">
+          <Image src={email} alt="email" objectFit="cover" width={25}/>
+          <div className="pl-2">eletrax2024@gmail.com</div>
+        </div>
+        <div className="bg-gray-300 w-[1px]">
+        </div>
+        <div className="flex px-8"  >
+          <Image src={location} alt="location" objectFit="cover" width={25}/>   
+          <div className="pl-2">Location</div>
+        </div>
+        </div>
+      </div>
+      </div>
+      
     </header>)
 }
 

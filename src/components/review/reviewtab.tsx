@@ -22,12 +22,10 @@ export type review = {
 let categories = [
   { id: 1, name: 'MCB DB BOX' },
   { id: 2, name: 'AC BOX'  },
-  { id: 6, name: 'MCCB'  },
   { id: 4, name: 'MAIN SWITCH CHANGEOVER'  },
   { id: 3, name: 'GI MODULAR BOX'},
   { id: 5, name: 'BUS BAR' },
   { id: 7, name: 'MCB' },
-  { id: 8, name: 'ELCB' }
 ]
 
 export const ReviewTab = ({reviews}: {reviews: review[] | undefined}):ReactNode => {
