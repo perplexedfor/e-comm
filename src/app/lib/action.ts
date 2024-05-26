@@ -1,4 +1,4 @@
-
+"use server"
 
 import { z } from 'zod';
 import prisma from '@/db';
@@ -87,4 +87,5 @@ export async function createReview(value:{ name: string, message: string,rating 
         }
     });
   }
+  revalidatePath('/');
 }
