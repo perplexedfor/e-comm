@@ -1,4 +1,4 @@
-"use server"
+
 
 import { z } from 'zod';
 import prisma from '@/db';
@@ -10,7 +10,7 @@ const ReviewSchema = z.object({
 });
 
 import { revalidatePath } from 'next/cache';
-import { redirect } from 'next/navigation';
+
 
 import { reviews } from '@prisma/client';
 export async function getproductDetails(name: string) {
@@ -87,5 +87,4 @@ export async function createReview(value:{ name: string, message: string,rating 
         }
     });
   }
-    revalidatePath('/');
 }

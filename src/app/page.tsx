@@ -11,7 +11,11 @@ import Link from "next/link"
 
 export async function getComponentDetails() {
   try {
-    const category = await prisma.category.findMany();
+    const category = await prisma.category.findMany({
+      orderBy: {
+        id: 'asc',
+      },
+    });
     return {
       category,
     };
@@ -82,8 +86,11 @@ export default async function Component() {
                 <iframe src="https://www.youtube.com/embed/FSNybHy5vJ0?si=hZEhiYpkIkNlQn2N" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen className="absolute top-0 left-0 w-[100%] h-[100%]"></iframe>
           </div>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32 border-t relative">
+        <section className="w-full py-12 md:py-24 lg:py-32 border-t relative" id="products">
           <Products categories={data?.category}/>
+          <div className="text-lg italic px-6 py-2">
+            We only deal in Wholesale * 
+          </div>
         </section>
         <section className="w-full py-12 md:py-24 lg:py-32 border-t bg-gradient-to-r from-blue-200 via-indigo-300 to-blue-400 flex flex-row " id="about" >
           <div className="container grid items-center gap-6 px-4 md:px-6 bg-gray-200 mx-auto text-center ml-4 relative">

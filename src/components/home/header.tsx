@@ -15,20 +15,20 @@ export default function Header(): ReactNode{
       <div className="bg-gray-200 w-[75%] hidden lg:block">
         <div className="flex flex-row py-8 pl-4">
         <div className="flex px-8">
-          <Image src={service} alt="service" objectFit="cover" width={25}/>
-          <div className="pl-2">+91 8588039372</div>
+          <Image src={service} alt="service" objectFit="cover" width={25} className="py-4"/>
+          <div className="p-4">+91 9810339372</div>
         </div>
         <div className="bg-gray-300 w-[1px]">
           </div>
         <div className="flex px-8">
-          <Image src={email} alt="email" objectFit="cover" width={25}/>
-          <div className="pl-2">eletrax2024@gmail.com</div>
+          <Image src={email} alt="email" objectFit="cover" width={25} className="py-4"/>
+          <div className="p-4">eletrax2024@gmail.com</div>
         </div>
         <div className="bg-gray-300 w-[1px]">
         </div>
         <div className="flex px-8"  >
-          <Image src={location} alt="location" objectFit="cover" width={25}/>   
-          <div className="pl-2">Location</div>
+          <Image src={location} alt="location" objectFit="cover" width={25} className="py-4"/>   
+          <div className="pl-2 flex flex-col"><div>Plot no-12, khasra no-58, Milan garden E-block, Mandoli.</div><div>Delhi-110095</div></div>
         </div>
         </div>
       </div>

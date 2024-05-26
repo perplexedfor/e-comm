@@ -30,8 +30,8 @@ export default function Subfooter() {
             <div className="px-2">eletrax@gmail.com</div>
         </div>
         <div className="flex py-3">
-            <Image src={location} alt="location" objectFit="cover" width={25}/>
-            <div></div>
+            <Image src={location} alt="location" objectFit="cover" width={25} className="py-4"/>
+            <div><div>Plot no-12, khasra no-58, Milan garden E-block, Mandoli.</div><div>Delhi-110095</div></div>
         </div>
         </div>
 </div> )
