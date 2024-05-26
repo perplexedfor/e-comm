@@ -88,7 +88,7 @@ export default async function Component() {
         </section>
         <section className="w-full py-12 md:py-24 lg:py-32 border-t relative" id="products">
           <Products categories={data?.category}/>
-          <div className="text-lg italic px-6 py-2">
+          <div className="text-3xl italic px-6 py-2">
             We only deal in Wholesale * 
           </div>
         </section>
