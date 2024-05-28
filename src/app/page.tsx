@@ -8,7 +8,6 @@ import prisma from '@/db';
 import Embed from "@/components/home/videoframe"
 import Subfooter from "@/components/footer/subfooter"
 import Link from "next/link"
-import { revalidatePath } from 'next/cache'
 
 export async function getComponentDetails() {
   try {
@@ -17,6 +16,7 @@ export async function getComponentDetails() {
         id: 'asc',
       },
     });
+    console.log(category)
     return {
       category,
     };
@@ -45,7 +45,6 @@ const getReviews = async () => {
           created_at: true,
         },
       })
-      revalidatePath("/")
       return {reviews}
     }catch (e){
       console.log(e);
