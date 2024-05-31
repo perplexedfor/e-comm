@@ -127,7 +127,7 @@ export default async function Component(params: { params: { category: string }})
           <div className="" id="reviews">
             <h2 className="font-semibold text-2xl lg:text-3xl mb-4">Reviews</h2>
             {
-              reviews != undefined && reviews.length > 0 ? <ReviewTab reviews={reviews}/> : <div>No reviews yet</div>
+              reviews != undefined && reviews.length > 0 ? <ReviewTab/> : <div>No reviews yet</div>
             }
           </div>
                 <Separator className="border-t" />

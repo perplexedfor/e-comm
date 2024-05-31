@@ -12,7 +12,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { JsonValue } from "@prisma/client/runtime/library";
-
+import { Mainproducts } from "@/components/home/mainProducts";
 // export const getServerSideProps = async () => {
 //   const category = await prisma.category.findMany()
 
@@ -42,7 +42,7 @@ const baseUrl = "https://uxzikocsoffozrqooxqy.supabase.co/storage/v1/object/publ
                   />
                   </CardContent>
                   <CardFooter>
-                   <p>{category.name}</p>
+                   <p>{    category.name.replace(/_/g,' ')}</p>
                   </CardFooter>
                 </Card>
         </Link>
@@ -62,6 +62,7 @@ export default function Products({categories}:{ categories:Category[]|undefined}
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Discover Our Products</h2>
             </div>
             <div className="space-y-2">
+              <Mainproducts name="MCB_DB_BOX"/>
               <Product categories={categories}/>
             </div>
       </div>

@@ -9,10 +9,9 @@ const ReviewSchema = z.object({
   category: z.number(),
 });
 
-import { revalidatePath } from 'next/cache';
-
 
 import { reviews } from '@prisma/client';
+
 export async function getproductDetails(name: string) {
     switch (name) {
       case "AC_BOX":
@@ -87,5 +86,4 @@ export async function createReview(value:{ name: string, message: string,rating 
         }
     });
   }
-  revalidatePath('/');
 }

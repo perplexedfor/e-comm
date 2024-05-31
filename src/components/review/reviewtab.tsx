@@ -1,6 +1,6 @@
-import { ReactNode } from "react"
-import Star from "@/svgs/Star.svg"
 
+import Star from "@/svgs/Star.svg"
+import { getReviews } from "@/app/lib/util"
 import {
   Card,
   CardContent,
@@ -28,12 +28,13 @@ let categories = [
   { id: 7, name: 'MCB' },
 ]
 
-export const ReviewTab = ({reviews}: {reviews: review[] | undefined}):ReactNode => {
+export const ReviewTab = async () => {
+    const reviews = await getReviews();
     return (
 
             <div className="space-y-4">
             {
-              reviews != undefined ? reviews.map((review,index) => (
+              reviews != undefined ? reviews.reviews.map((review,index) => (
                 <Card className="relative min-h-[150px] lg:min-w-[650px] bg-neutral-200" key={index}>
                   <CardHeader>
                     <CardTitle><div className="flex justify-between text-base"><div>{review.name}<div className="flex max-w-[50px]">{review.rating}<Star className="h-[20px]"></Star></div></div><div className="font-weight-thin">{review.created_at.toString().substring(0,3)+", "+review.created_at.toString().substring(3,16)}</div></div></CardTitle>

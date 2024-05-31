@@ -21,7 +21,8 @@ import { JsonValue } from "@prisma/client/runtime/library"
 interface DescriptionObject {
   [key: string]: any;
 }
-
+import { valueAtom } from "../../atoms/product"
+import { useRecoilState } from "recoil"
 export default function ProductImage(parameter: {parameter:{ id: number; type: string; size: number; description: JsonValue | null}[]} ) {
     const regex = /\s/g;
     let types: string[];
@@ -52,7 +53,7 @@ export default function ProductImage(parameter: {parameter:{ id: number; type: s
     }
     console.log(descriptionObject);
     const baseUrl = "https://uxzikocsoffozrqooxqy.supabase.co/storage/v1/object/public/product-images/";
-    const [current, setCurrent] = useState(0);
+    const [current, setCurrent] = useRecoilState(valueAtom);
     return (
       <div>
       <div className="text-xl underline">
