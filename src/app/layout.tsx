@@ -3,7 +3,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/sonner"
 
 export const metadata: Metadata = {
-  title: "MCB DB BOX, MCBs, AC BOX, GI AND PVC MODULAR BOX, 2 and 3 pin, BUS BAR | Electrax",
+  title: "MCB DB BOX, MCBs, AC BOX, GI AND PVC MODULAR BOX, 2 and 3 pin, BUS BAR | Eletrax",
   description: "Electrax deals in circuit protection and electronic appliances such as MCB DB BOX, MCBs, AC BOX,  GI AND PVC MODULAR BOX, 2 and 3 pin, BUS BAR, etc. We offer our best service to our clients in terms of quality, timely delivery and product satisfaction.",
   icons: {
     icon: '/favicon.ico', // /public path
