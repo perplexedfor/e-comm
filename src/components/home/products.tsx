@@ -36,9 +36,9 @@ const baseUrl = "https://uxzikocsoffozrqooxqy.supabase.co/storage/v1/object/publ
                   <Image
                   alt="Image"
                   className="aspect-square rounded-lg"
-                  height="380"
+                  height="370"
                   src={baseUrl+category.name+".png"}
-                  width="330"
+                  width="310"
                   />
                   </CardContent>
                   <CardFooter>

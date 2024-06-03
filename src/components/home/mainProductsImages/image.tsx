@@ -14,9 +14,9 @@ export const Images = ({products: products,name:name}:{products:product[]|undefi
     const setList = useSetRecoilState(valueAtom);
     const baseUrl = "https://uxzikocsoffozrqooxqy.supabase.co/storage/v1/object/public/product-images/";
     return (
-        <div className="py-8">
+        <div className="pb-8">
 
-        <div className="relative overflow-x-auto flex max-w-[400px] md:max-w-[760px] lg:max-w-[1120px] h-[280px]">
+        <div className="relative overflow-x-auto flex max-w-[320px] md:max-w-[760px] lg:max-w-[1220px] h-[280px]">
         {
             products != undefined ? products.map((product,index) => (
                 <Link href={`/products/${name}`}  className="cursor-pointer transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" key={index}>
