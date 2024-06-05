@@ -28,7 +28,7 @@ export default function Header(): ReactNode{
         </div>
         <div className="flex px-8"  >
           <Image src={location} alt="location" objectFit="cover" width={25} className="py-4"/>   
-          <div className="pl-2 flex flex-col"><div>Plot no-12 ,khasra no-10/2 ,Milan garden E-block</div><div>New Mandoli Industrial Area, Delhi-110095</div></div>
+          <div className="pl-2 flex flex-col"><div>Plot no-12 ,khasra no-10/2 ,E-block Milan garden</div><div>New Mandoli Industrial Area, Delhi-110093</div></div>
         </div>
         </div>
       </div>
