@@ -83,11 +83,11 @@ export default async function Component(params: { params: { category: string }})
               <DropdownMenuSeparator />
               {
                 categoriesdes?.category.map((category) => (
-                  <DropdownMenuItem>
-                    <Link className="font-semibold cursor-pointer " href={category.name}>
+                  <DropdownMenuItem key={category.id}>
+                    <Link className="font-semibold cursor-pointer "  href={category.name}>
                     {category.name.replace(/-/g, " ")}
                     </Link>
-                    </DropdownMenuItem>
+                  </DropdownMenuItem>
                 ))
               }
             </DropdownMenuContent>
