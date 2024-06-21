@@ -13,6 +13,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown"
+import { unstable_noStore as noStore } from 'next/cache';
+
 import ReviewTab from "@/components/review/reviewtab"
 import { JsonValue } from "@prisma/client/runtime/library"
 import { review } from "@/components/review/reviewtab"
@@ -29,6 +31,7 @@ export async function generateStaticParams() {
 
 }
 const getReviewsCat = async (user:{id: number,name: string, description: JsonValue}) => {
+  noStore();
   try {
     const reviews:review[] = await prisma.reviews.findMany({
       take: 4,
