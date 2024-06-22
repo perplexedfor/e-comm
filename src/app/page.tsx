@@ -9,6 +9,8 @@ import Embed from "@/components/home/videoframe"
 import Subfooter from "@/components/footer/subfooter"
 import Link from "next/link"
 
+export const revalidate = 3600;
+
 export async function getComponentDetails() {
   try {
     const category = await prisma.category.findMany({
