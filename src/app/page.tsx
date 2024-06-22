@@ -77,7 +77,7 @@ export default async function Component() {
               “Eletrax Industries” was established in the year 2004. We are involved in Manufacturing a wide range of MCB Boxes, AC Box, Modular Boxes, Junction Box etc. Apart from this, we are providing these items at leading market price. The highly advanced infrastructure facility has been segmented into various functional units, for reasons of attaining reliable, smoother and hassle free management of the production operations. For achieving our well defined objective, our infrastructure unit has been equipped with all the necessary and modern technology based machines and equipment. Further, our highly ethical working approach has enabled us in generating a huge clientele across the nation. Our team members use their profound domain knowledge to gauge the variegated demands of the clients and co-operate each other for achieving a common goal.
 Our owner, 
               </p>
-              <p className="mx-auto max-w-[600px] text-indigo-950 md:text-lg/relaxed lg:text-text-xl/relaxed xl:text-lg/relaxed ">"Mr. Lalit Goyal" has vast industry experience which influences our team and helps us increase the required skill in providing these products to our clients. Thus, with his management skills, they helped us to achieve success in the market.</p>
+              <p className="mx-auto max-w-[600px] text-indigo-950 md:text-lg/relaxed lg:text-text-xl/relaxed xl:text-lg/relaxed ">&quot;Mr. Lalit Goyal&quot; has vast industry experience which influences our team and helps us increase the required skill in providing these products to our clients. Thus, with his management skills, they helped us to achieve success in the market.</p>
             </div>
           </div>
           <div className="bg-[url('/background2.jpg')] w-[25%] mr-4 ">
@@ -94,7 +94,7 @@ Our owner,
           <div className="space-y-2 text-center ">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl flex justify-center   ">Customer Reviews</h2>
               <p className=" max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400 flex justify-center mx-auto">
-                Don't just take our word for it. Our customers love the products we offer.
+                Don&apos;t just take our word for it. Our customers love the products we offer.
               </p>
           </div>
           <div className="flex justify-center" id="review">

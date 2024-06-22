@@ -29,7 +29,7 @@ const baseUrl = "https://uxzikocsoffozrqooxqy.supabase.co/storage/v1/object/publ
   return (
     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
                   
-        {categories != undefined ? categories.map((category,index) => (
+        {categories != undefined ? categories.filter(category => category.name != "MCB_DB_BOX").map((category,index) => (
         <Link href={`/products/${category.name}`}  className="cursor-pointer transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" key={index}>
                  <Card className="bg-gray-300" key={category.id}>
                   <CardContent className="bg-slate-50">
