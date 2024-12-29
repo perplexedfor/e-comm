@@ -4,7 +4,7 @@ import ReviewSection from "@/components/products/review-section"
 import Footer from "@/components/footer/footer"
 import { getComponentDetails } from "@/app/page"
 import { getproductDetails } from "@/app/lib/action"
-import { review } from "@/components/review/reviewtab"
+import { Review } from "@/components/review/reviewtab"
 import prisma from "@/db"
 import { JsonValue } from "@prisma/client/runtime/library"
 
@@ -22,7 +22,7 @@ export async function generateStaticParams() {
 
 const getReviewsCat = async (user: { id: number; name: string; description: JsonValue }) => {
   try {
-    const reviews: review[] = await prisma.reviews.findMany({
+    const reviews: Review[] = await prisma.reviews.findMany({
       take: 4,
       orderBy: {
         rating: 'desc',
