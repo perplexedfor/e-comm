@@ -1,84 +1,70 @@
 import {
-    Table,
-    TableBody,
-    TableCaption,
-    TableCell,
-    TableFooter,
-    TableHead,
-    TableHeader,
-    TableRow,
-  } from "@/components/ui/table"
-  const head = [
-    "Basic Information",
-    "Statutory Profile",
-    "Payment and Shipment Details",
-  ]
-  const tables = [
-    {
-      Nature_of_Bussiness: "Exporter and Manufacturer",
-      Additional_Bussiness: "Wholesaler, Trader, Supplier, Exporter",
-      Company_CEO: "Lalit Goyal",
-      Total_number_of_employees: "40-50 people",
-     Year_of_Establishment: "2012",
-     Legal_status_of_firm: "Individual - Proprietor",
-        Annual_Turnover: "Above 3 crore",
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
+
+const factsheetData = [
+  {
+    title: "Basic Information",
+    data: {
+      "Nature of Business": "Exporter and Manufacturer",
+      "Additional Business": "Wholesaler, Trader, Supplier, Exporter",
+      "Company CEO": "Lalit Goyal",
+      "Total Employees": "40-50 people",
+      "Year of Establishment": "2012",
+      "Legal Status of Firm": "Individual - Proprietor",
+      "Annual Turnover": "Above 3 crore",
     },
-    {
-      Import_Export_Code: "ABSPG2553P",
-      Banker: "Bank of Baroda, AXIS Bank",
-      GST_number: "07ABSPG2553P1Z2",
+  },
+  {
+    title: "Statutory Profile",
+    data: {
+      "Import Export Code": "ABSPG2553P",
+      "Banker": "Bank of Baroda, AXIS Bank",
+      "GST Number": "07ABSPG2553P1Z2",
     },
-    {
-      Payment_Method: "Cash, Cheque, Credit Card, DD, Online",
-    Shipment_Mode: "By Road",
+  },
+  {
+    title: "Payment and Shipment Details",
+    data: {
+      "Payment Method": "Cash, Cheque, Credit Card, DD, Online",
+      "Shipment Mode": "By Road",
     },
-  ]
-   
-  export function Factsheet() {
-    return (
-        <div>
-            {
-            tables.map((table,index) => (
-                <Table key={index}>
-                  <TableHead className="text-lg md:text-xl lg:text-2xl underline decoration-2">{head[index]}</TableHead>
-                  <TableBody>
-                    {Object.entries(table).map(([key, value],index) => (
-                      <TableRow key={index} className="hover:bg-teal-400">
-                        <TableCell className="font-medium">{key.replace(/_/g, " ")}</TableCell>
-                        <TableCell>{value}</TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              ))
-            } 
-      {/* <Table>
-        <TableCaption>Basic Information</TableCaption> */}
-        {/* <TableHeader>
-          <TableRow>
-            <TableHead className="w-[100px]">Invoice</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Method</TableHead>
-            <TableHead className="text-right">Amount</TableHead>
-          </TableRow>
-        </TableHeader> */}
-        {/* <TableBody>
-          {invoices.map((invoice) => (
-            <TableRow key={invoice.invoice}>
-              <TableCell className="font-medium">{invoice.invoice}</TableCell>
-              <TableCell>{invoice.paymentStatus}</TableCell>
-              <TableCell>{invoice.paymentMethod}</TableCell>
-              <TableCell className="text-right">{invoice.totalAmount}</TableCell>
-            </TableRow>
+  },
+]
+
+export function Factsheet() {
+  return (
+    <section className="py-16 bg-white">
+      <div className="container mx-auto px-4">
+        <h2 className="text-3xl font-bold text-center mb-8">Company Factsheet</h2>
+        <div className="space-y-8">
+          {factsheetData.map((section, index) => (
+            <Table key={index}>
+              <TableHeader>
+                <TableRow>
+                  <TableHead colSpan={2} className="text-lg font-semibold">
+                    {section.title}
+                  </TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {Object.entries(section.data).map(([key, value], index) => (
+                  <TableRow key={index}>
+                    <TableCell className="font-medium">{key}</TableCell>
+                    <TableCell>{value}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
           ))}
-        </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TableCell colSpan={3}>Total</TableCell>
-            <TableCell className="text-right">$2,500.00</TableCell>
-          </TableRow>
-        </TableFooter>
-      </Table> */}
+        </div>
       </div>
-    )
-  }
+    </section>
+  )
+}
+

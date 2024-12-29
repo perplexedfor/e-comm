@@ -15,7 +15,6 @@ import { JsonValue } from "@prisma/client/runtime/library";
 import { Mainproducts } from "@/components/home/mainProducts";
 // export const getServerSideProps = async () => {
 //   const category = await prisma.category.findMany()
-
 //   return {  props: category }
 // }
 type Category = {
@@ -27,25 +26,28 @@ type Category = {
 function Product({ categories }: { categories: Category[] | undefined}) {
 const baseUrl = "https://uxzikocsoffozrqooxqy.supabase.co/storage/v1/object/public/categories/";
   return (
-    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                  
-        {categories != undefined ? categories.filter(category => category.name != "MCB_DB_BOX").map((category,index) => (
-        <Link href={`/products/${category.name}`}  className="cursor-pointer transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" key={index}>
-                 <Card className="bg-gray-300" key={category.id}>
-                  <CardContent className="bg-slate-50">
-                  <Image
-                  alt="Image"
-                  className="aspect-square rounded-lg"
-                  height="370"
-                  src={baseUrl+category.name+".png"}
-                  width="310"
-                  />
-                  </CardContent>
-                  <CardFooter>
-                   <p>{    category.name.replace(/_/g,' ')}</p>
-                  </CardFooter>
-                </Card>
-        </Link>
+    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">  
+        {categories ? categories.filter(category => category.name != "MCB_DB_BOX" && category.name != "MCB").map((category,index) => (
+        <Link
+        href={`/products/${category.name}`}
+        key={category.id}
+        className="transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none"
+      >
+        <Card className="h-full">
+          <CardContent className="p-4">
+            <Image
+              alt={category.name}
+              className="aspect-square object-cover rounded-lg"
+              height={300}
+              src={`${baseUrl}${category.name}.png`}
+              width={300}
+            />
+          </CardContent>
+          <CardFooter className="text-center font-medium">
+            {category.name.replace(/_/g, " ")}
+          </CardFooter>
+        </Card>
+      </Link>
 
   )): <div>Loading...</div>}
   </div>
@@ -56,12 +58,8 @@ const baseUrl = "https://uxzikocsoffozrqooxqy.supabase.co/storage/v1/object/publ
 export default function Products({categories}:{ categories:Category[]|undefined}):ReactNode {
 
   return (
-
     <div className="container grid items-center gap-6 sm:px-4 md:px-6">
-            <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Discover Our Products</h2>
-            </div>
-            <div className="space-y-2">
+            <div className="space-y-2 flex-row justify-center max-w-[1100px]">
               <Mainproducts name="MCB_DB_BOX"/>
               <Product categories={categories}/>
             </div>

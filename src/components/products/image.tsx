@@ -1,5 +1,7 @@
-"use client"
+'use client'
 
+import { useState } from "react"
+import Image from "next/image"
 import {
   Carousel,
   CarouselContent,
@@ -7,115 +9,77 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
-import Image from "next/image"
-import { useState } from "react"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { JsonValue } from "@prisma/client/runtime/library"
-interface DescriptionObject {
-  [key: string]: any;
+interface ProductImageProps {
+  parameter: {
+    id: number
+    type: string
+    size: number
+    description: JsonValue | null
+  }[]
+  currentIndex: number
+  setCurrentIndex: (index: number) => void
 }
-import { valueAtom } from "../../atoms/product"
-import { useRecoilState } from "recoil"
-export default function ProductImage(parameter: {parameter:{ id: number; type: string; size: number; description: JsonValue | null}[]} ) {
-    const regex = /\s/g;
-    let types: string[];
-    types = [];
-    if(parameter){
-    types = parameter.parameter.map((product) => product.type.replace(regex, '')); 
-    }
 
-    let sizes: number[];
-    sizes = parameter.parameter.map((product) => product.size);
+export default function ProductImage({ parameter, currentIndex, setCurrentIndex }: ProductImageProps) {
+  const baseUrl = "https://uxzikocsoffozrqooxqy.supabase.co/storage/v1/object/public/product-images/"
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
-    let descriptionObject:DescriptionObject[];
-    descriptionObject = parameter.parameter.map((product) => {
-      try {
-        return product.description as Object;
-      } catch (error) {
-        console.error(`Failed to parse product.description: ${product.description}`);
-        return {};
-      }
-    });
-    for(let i = 0; i < descriptionObject.length; i++){
-      if(descriptionObject[i] == null){
-        descriptionObject[i] = {};
-      }
-      // else{
-      //   descriptionObject[i] = JSON.parse(descriptionObject[i] as string);
-      // }
-    }
-    console.log(descriptionObject);
-    const baseUrl = "https://uxzikocsoffozrqooxqy.supabase.co/storage/v1/object/public/product-images/";
-    const [current, setCurrent] = useRecoilState(valueAtom);
-    return (
-      <div>
-      <div className="text-xl underline">
-        {types[current].replace(/-/g, " ")}
-      </div>
-      <div className="flex flex-col md:flex-row justify-between">
-        <Carousel className="max-w-sm md:max-w-md lg:max-w-lg border">
-              <CarouselContent className="">
-              {parameter.parameter[current].size == null ? null :
-              Array.from({ length:sizes[current]}).map((_, i) => (
-              <CarouselItem className="flex flex-col aspect-square items-center justify-center p-6" key={i}>
-                  <Image 
-                src = {`${baseUrl}${types[current]}-${i+1}.png`} 
-                alt = {types[current]} 
-                width = {350} 
-                height = {400} 
+  const types = parameter.map(product => product.type.replace(/\s/g, ''))
+  const sizes = parameter.map(product => product.size)
+
+  return (
+    <div className="space-y-4">
+      <Carousel className="w-full max-w-xl mx-auto">
+        <CarouselContent>
+          {Array.from({ length: sizes[currentIndex] || 0 }).map((_, i) => (
+            <CarouselItem key={i} className="flex items-center justify-center">
+              <Image 
+                src={`${baseUrl}${types[currentIndex]}-${i+1}.png`}
+                alt={`${types[currentIndex]} image ${i+1}`}
+                width={400}
+                height={400}
+                className="object-contain"
               />
-              <div className="text-xl font-semibold text-gray-700">{i+1+" "}of{" "+sizes[current]}</div>
-              </CarouselItem>
-              ))}
-              </CarouselContent>
-              <CarouselPrevious className="ml-12" />
-              <CarouselNext className="mr-12" />
-        </Carousel>
-        <div className="overflow-y-scroll max-h-[250px] md:max-h-[500px]">
-        {types.length !== 1 ? (
-          types.map((type, index) => (
-            <Card key={index}>
-              <CardTitle className="text-base px-2">{type.replace(/_/g, " ")}</CardTitle>
-              <CardContent>
-              <Image
-                key={type}
-                src={`${baseUrl}${type}-1.png`}
-                alt={type}
-                width={200}
-                height={200}
-                onClick={() => setCurrent(index)}
-              />
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
+
+      {types.length > 1 && (
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-4">
+          {types.map((type, index) => (
+            <Card 
+              key={index} 
+              className={`cursor-pointer transition-all ${index === currentIndex ? 'ring-2 ring-blue-500' : ''}`}
+              onClick={() => setCurrentIndex(index)}
+            >
+              <CardContent className="p-2">
+                <Image
+                  src={`${baseUrl}${type}-1.png`}
+                  alt={type}
+                  width={100}
+                  height={100}
+                  className="w-full h-auto object-contain"
+                />
+                <p className="text-center text-sm mt-2">{type.replace(/_/g, " ")}</p>
               </CardContent>
-                
             </Card>
-        ))
-        ) : null}
+          ))}
         </div>
-      </div>
-      
-      
-              {
-                    <div className="grid gap-4" id="specifications">
-                    <h2 className="font-semibold text-2xl lg:text-3xl">Specifications</h2>
-                    <div className="grid md:grid-cols-2 gap-4">
-                {Object.keys(descriptionObject[current]).map((key) => (
-                  <div className="grid gap-1" key={key}>
-                    <p className="text-sm font-medium">{key}</p>
-                    <p>{descriptionObject[current][key]}</p>
-                  </div>
-                ))} </div>
-          </div>
-              }
-      </div>
-    )
+      )}
+    </div>
+  )
 }
+
+
+
+
+
+
 
 
   

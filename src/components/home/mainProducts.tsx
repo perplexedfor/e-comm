@@ -1,8 +1,13 @@
 
 import { getproductDetails } from "@/app/lib/action";
-
+import { useRef } from "react";
 import { Prisma } from "@prisma/client";
-import { Label } from "../ui/label";
+import { Button } from "../ui/button";
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+// import { motion } from "framer-motion";
+import { Card, CardContent, CardFooter } from "../ui/card";
+import Image  from "next/image";
+import Link from "next/link";
 import { Images } from "./mainProductsImages/image";
 export type product = {
     id: number;
@@ -13,11 +18,5 @@ export type product = {
 
 export const Mainproducts = async ({name : name}:{name:string}) => {
     const products:product[] | undefined = await getproductDetails(name);
-    const clean = name.replace(/_/g,' ');
-    return (
-       <div>
-        <Label className="text-xl px-2">{clean}</Label>
-        <Images products={products} name={name}/>
-       </div>
-    )
+    return <Images products={products} name={name}/>
 }
