@@ -3,7 +3,6 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Button } from "@/components/ui/button";
 
 export default function About() {
   const ref = useRef(null);
@@ -31,7 +30,7 @@ export default function About() {
           <p className="mb-6 text-gray-700">
             Established in 2004, Eletrax Industries has been at the forefront of manufacturing high-quality electrical
             components. Our wide range includes MCB Boxes, AC Boxes, Modular Boxes, Junction Boxes, and more. With a
-            commitment to quality and innovation, we've built a reputation for reliability and excellence in the
+            commitment to quality and innovation, we&apos;ve built a reputation for reliability and excellence in the
             industry.
           </p>
           <p className="mb-6 text-gray-700">
@@ -39,7 +38,7 @@ export default function About() {
             stringent quality control measures to deliver products that meet and exceed industry standards. We pride
             ourselves on our ethical business practices and customer-centric approach.
           </p>
-          <Button>Learn More</Button>
+          {/* <Button>Learn More</Button> */}
         </motion.div>
       </div>
     </section>

@@ -46,7 +46,7 @@ export default function Header({ categories }: { categories: Category[] }) {
                   {categories.map((category) => (
                     <DropdownMenuItem key={category.id}>
                       <Link 
-                        href={`/${category.name}`}
+                        href={`./${category.name}`}
                         className="w-full hover:text-indigo-600 transition-colors"
                       >
                         {category.name.replace(/-/g, " ")}
@@ -72,7 +72,7 @@ export default function Header({ categories }: { categories: Category[] }) {
                 {categories.map((category) => (
                   <DropdownMenuItem key={category.id}>
                     <Link 
-                      href={`/${category.name}`}
+                      href={`./${category.name}`}
                       className="w-full"
                     >
                       {category.name.replace(/-/g, " ")}

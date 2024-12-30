@@ -1,10 +1,9 @@
-'use client'
 
 import { motion } from "framer-motion"
 import { Separator } from "@/components/ui/separator"
 import ReviewTab from "@/components/review/reviewtab"
 import InputBox from "@/components/review/inputbox"
-import { review } from "@/components/review/reviewtab"
+import { Review } from "@/components/review/reviewtab"
 import {
   Card,
   CardContent,
@@ -13,18 +12,19 @@ import {
 } from "@/components/ui/card"
 
 type ReviewSectionProps = {
-  reviews?: review[]
+  reviews?: Review[]
   categoryId?: number
 }
 
 export default function ReviewSection({ reviews, categoryId }: ReviewSectionProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 0.3 }}
-      className="space-y-8 mt-16"
-    >
+    // <motion.div
+    //   initial={{ opacity: 0, y: 20 }}
+    //   animate={{ opacity: 1, y: 0 }}
+    //   transition={{ duration: 0.5, delay: 0.3 }}
+    //   className="space-y-8 mt-16"
+    // >
+    <div className="space-y-8 mt-16">
       <Separator />
       
       <Card>
@@ -33,7 +33,7 @@ export default function ReviewSection({ reviews, categoryId }: ReviewSectionProp
         </CardHeader>
         <CardContent>
           {reviews && reviews.length > 0 ? (
-            <ReviewTab />
+            <ReviewTab categoryId={categoryId} />
           ) : (
             <div className="text-center py-8 text-gray-500">
               No reviews yet. Be the first to review this product!
@@ -50,7 +50,8 @@ export default function ReviewSection({ reviews, categoryId }: ReviewSectionProp
           <InputBox />
         </CardContent>
       </Card>
-    </motion.div>
+    </div>
+    // </motion.div>
   )
 }
 

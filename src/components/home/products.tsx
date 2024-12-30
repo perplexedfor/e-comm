@@ -1,7 +1,9 @@
-
+'use client'
 import { ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useSetRecoilState } from "recoil";
+import { valueAtom } from "@/atoms/product";
 // import { createClient } from '@supabase/supabase-js'
 import {
   Card,
@@ -24,7 +26,8 @@ type Category = {
 }
 
 function Product({ categories }: { categories: Category[] | undefined}) {
-const baseUrl = "https://uxzikocsoffozrqooxqy.supabase.co/storage/v1/object/public/categories/";
+  const baseUrl = "https://uxzikocsoffozrqooxqy.supabase.co/storage/v1/object/public/categories/";
+  const setValue = useSetRecoilState(valueAtom);
   return (
     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">  
         {categories ? categories.filter(category => category.name != "MCB_DB_BOX" && category.name != "MCB").map((category,index) => (
@@ -33,7 +36,9 @@ const baseUrl = "https://uxzikocsoffozrqooxqy.supabase.co/storage/v1/object/publ
         key={category.id}
         className="transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none"
       >
-        <Card className="h-full">
+        <Card className="h-full" onClick={()=>{
+          setValue(0);
+        }}>
           <CardContent className="p-4">
             <Image
               alt={category.name}
@@ -59,7 +64,8 @@ export default function Products({categories}:{ categories:Category[]|undefined}
 
   return (
     <div className="container grid items-center gap-6 sm:px-4 md:px-6">
-            <div className="space-y-2 flex-row justify-center max-w-[1100px]">
+            <div className="space-y-2 flex-row justify-center max-w-[400px] md:max-w-[800px] lg:max-w-[1100px] pt-10">
+              <Mainproducts name="MCB"/>
               <Mainproducts name="MCB_DB_BOX"/>
               <Product categories={categories}/>
             </div>

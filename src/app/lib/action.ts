@@ -52,7 +52,14 @@ export async function getproductDetails(name: string) {
           } catch (e) {
           console.log(e);
           }
-      }
+      case "MCB":
+        try {
+          const products = await prisma.mCB.findMany();
+          return products;
+          } catch (e) {
+          console.log(e);
+          }
+        }
 }
 export async function createReview(value:{ name: string, message: string,rating : string,id: string} ) {
     console.log(value);

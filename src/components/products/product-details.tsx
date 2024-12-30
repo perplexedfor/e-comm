@@ -4,12 +4,13 @@ import { motion } from "framer-motion"
 import { Separator } from "@/components/ui/separator"
 import ProductImage from "@/components/products/image"
 import { JsonValue } from "@prisma/client/runtime/library"
+import { valueAtom } from "@/atoms/product"
 import {
   Card,
   CardContent,
 } from "@/components/ui/card"
 import { Prisma } from "@prisma/client"
-import { useState } from "react"
+import { useRecoilValue } from "recoil"
 
 type ProductDetailsProps = {
   category?: {
@@ -25,8 +26,11 @@ type ProductDetailsProps = {
 }
 
 export default function ProductDetails({ category, products }: ProductDetailsProps) {
-    const [currentProductIndex, setCurrentProductIndex] = useState(0)
+    // const [currentProductIndex, setCurrentProductIndex] = useState(0)
 
+    const value = useRecoilValue(valueAtom)
+    console.log("products",products)
+    console.log("value",value)
     return (
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -50,9 +54,7 @@ export default function ProductDetails({ category, products }: ProductDetailsPro
             <CardContent className="p-0">
               {products && (
                 <ProductImage 
-                  parameter={products} 
-                  currentIndex={currentProductIndex}
-                  setCurrentIndex={setCurrentProductIndex}
+                  parameter={products}
                 />
               )}
             </CardContent>
@@ -60,15 +62,15 @@ export default function ProductDetails({ category, products }: ProductDetailsPro
   
           <div>
             <h2 className="text-2xl font-semibold mb-4">Product Details</h2>
-            {products && products[currentProductIndex] && (
+            {products && products[value] && (
               <div className="space-y-4">
-                <p><strong>Type:</strong> {products[currentProductIndex].type.replace(/_/g, " ")}</p>
-                <p><strong>Size:</strong> {products[currentProductIndex].size}</p>
-                {products[currentProductIndex].description && (
+                <p><strong>Type:</strong> {products[value].type.replace(/_/g, " ")}</p>
+                <p><strong>Size:</strong> {products[value].size}</p>
+                {products[value].description && (
                   <div>
                     <h3 className="text-xl font-semibold mt-4 mb-2">Specifications</h3>
                     <div className="grid gap-2">
-                      {Object.entries(products[currentProductIndex].description).map(([key, value]) => (
+                      {Object.entries(products[value].description).map(([key, value]) => (
                         <div key={key} className="bg-gray-100 p-2 rounded">
                           <span className="font-medium">{key}:</span> {value}
                         </div>
