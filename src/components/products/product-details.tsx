@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { Separator } from "@/components/ui/separator"
 import ProductImage from "@/components/products/image"
-import { JsonValue } from "@prisma/client/runtime/library"
+import { JsonObject, JsonValue } from "@prisma/client/runtime/library"
 import { valueAtom } from "@/atoms/product"
 import {
   Card,
@@ -21,16 +21,15 @@ type ProductDetailsProps = {
     id: number;
     type: string;
     size: number;
-    description: Prisma.JsonValue | null;
-}[]
+    description: JsonValue | null;
+  }[]
 }
 
 export default function ProductDetails({ category, products }: ProductDetailsProps) {
     // const [currentProductIndex, setCurrentProductIndex] = useState(0)
 
     const value = useRecoilValue(valueAtom)
-    console.log("products",products)
-    console.log("value",value)
+
     return (
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -70,9 +69,9 @@ export default function ProductDetails({ category, products }: ProductDetailsPro
                   <div>
                     <h3 className="text-xl font-semibold mt-4 mb-2">Specifications</h3>
                     <div className="grid gap-2">
-                      {Object.entries(products[value].description).map(([key, value]) => (
+                      {Object.entries(products[value].description as JsonObject).map(([key, value]) => (
                         <div key={key} className="bg-gray-100 p-2 rounded">
-                          <span className="font-medium">{key}:</span> {value}
+                          <span className="font-medium">{key}:</span> String(value)
                         </div>
                       ))}
                     </div>
