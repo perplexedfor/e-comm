@@ -71,7 +71,7 @@ export default function ProductDetails({ category, products }: ProductDetailsPro
                     <div className="grid gap-2">
                       {Object.entries(products[value].description as JsonObject).map(([key, value]) => (
                         <div key={key} className="bg-gray-100 p-2 rounded">
-                          <span className="font-medium">{key}:</span> String(value)
+                          <span className="font-medium">{key}:</span> {value?.toString()}
                         </div>
                       ))}
                     </div>
@@ -101,7 +101,7 @@ export default function ProductDetails({ category, products }: ProductDetailsPro
                     className="bg-white rounded-lg p-4 shadow-sm"
                   >
                     <h3 className="text-sm font-medium text-gray-500">{key}</h3>
-                    <p className="mt-1 text-lg">{String(value)}</p>
+                    <p className="mt-1 text-lg">{value?.toString()}</p>
                   </motion.div>
                 ))
               : <p>No description available</p>}

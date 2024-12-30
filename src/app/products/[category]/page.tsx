@@ -8,6 +8,7 @@ import { getproductDetails } from "@/app/lib/action";
 import { Review } from "@/components/review/reviewtab";
 import prisma from "@/db";
 import { JsonValue } from "@prisma/client/runtime/library";
+import  PageProps  from 'next/types'
 
 export const revalidate = 3600;
 
@@ -47,16 +48,12 @@ const getReviewsCat = async (user: { id: number; name: string; description: Json
 };
 
 // Define the component
-interface PageProps {
-  params: {
-    category: string;
-  };
-}
-
-export default async function Page({ params }: PageProps) {
-  const products = await getproductDetails(params.category);
+// type pageProps<T> = typeof PageProps;
+export default async function Page( { params } : { params : Promise<{slug: string}> } ) {
+  const { slug } = await params;
+  const products = await getproductDetails(slug);
   const categoriesdes = await getComponentDetails();
-  const category = categoriesdes?.category.find((cat) => cat.name === params.category);
+  const category = categoriesdes?.category.find((cat) => cat.name === slug);
   const reviews = category ? await getReviewsCat(category) : undefined;
 
   return (
@@ -71,12 +68,7 @@ export default async function Page({ params }: PageProps) {
   );
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  return {
-    title: `Category: ${params.category}`,
-    description: `Explore products in the ${params.category} category.`,
-  };
-}
+
 
 
 
