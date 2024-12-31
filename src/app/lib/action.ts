@@ -17,7 +17,7 @@ export async function getproductDetails(name: string) {
       case "AC_BOX":
         try {
           const products = await prisma.aC_BOX.findMany();
-          console.log(products);
+          // console.log(products);
           return products
           ;
           } catch (e) {
@@ -26,7 +26,7 @@ export async function getproductDetails(name: string) {
       case "GI_MODULAR_BOX":
         try {
           const products = await prisma.gI_MODULAR_BOX.findMany();
-          console.log(products);
+          // console.log(products);
           return products;
           } catch (e) {
           console.log(e);

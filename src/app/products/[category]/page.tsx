@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+
 import Header from "@/components/products/header";
 import ProductDetails from "@/components/products/product-details";
 import ReviewSection from "@/components/products/review-section";
@@ -8,20 +8,23 @@ import { getproductDetails } from "@/app/lib/action";
 import { Review } from "@/components/review/reviewtab";
 import prisma from "@/db";
 import { JsonValue } from "@prisma/client/runtime/library";
-import  PageProps  from 'next/types'
+
 
 export const revalidate = 3600;
 
 // Generate static params for dynamic routes
 export async function generateStaticParams() {
   const categories = await getComponentDetails();
-  if (categories && categories.category) {
+
+  if (categories?.category?.length) { // Safely check if categories and category array exist
     return categories.category.map((category) => ({
-      category: category.name,
+      category: category.name, // Matches the dynamic route `[category]`
     }));
   }
-  return [];
+
+  return []; // Return an empty array if no categories
 }
+
 
 // Fetch reviews by category
 const getReviewsCat = async (user: { id: number; name: string; description: JsonValue }) => {
@@ -49,19 +52,20 @@ const getReviewsCat = async (user: { id: number; name: string; description: Json
 
 // Define the component
 // type pageProps<T> = typeof PageProps;
-export default async function Page( { params } : { params : Promise<{slug: string}> } ) {
-  const { slug } = await params;
-  const products = await getproductDetails(slug);
+export default async function Page( { params } : { params : Promise<{category: string}> } ) {
+  const { category } = await params;
+  console.log("params",params)
+  const products = await getproductDetails(category);
   const categoriesdes = await getComponentDetails();
-  const category = categoriesdes?.category.find((cat) => cat.name === slug);
-  const reviews = category ? await getReviewsCat(category) : undefined;
-
+  const val = categoriesdes?.category.find((cat) => cat.name === category);
+  const reviews = val ? await getReviewsCat(val) : undefined;
+  console.log("val", val);
   return (
     <div className="min-h-screen bg-gray-50">
       <Header categories={categoriesdes?.category || []} />
       <main className="container mx-auto px-4 py-8">
-        <ProductDetails category={category} products={products} />
-        <ReviewSection reviews={reviews} categoryId={category?.id} />
+        <ProductDetails category={val} products={products} />
+        <ReviewSection reviews={reviews} categoryId={val?.id} />
       </main>
       <Footer />
     </div>

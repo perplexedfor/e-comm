@@ -21,7 +21,6 @@ export async function getComponentDetails() {
         id: 'asc',
       },
     });
-    console.log(category)
     return {
       category,
     };

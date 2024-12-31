@@ -3,13 +3,12 @@
 import { motion } from "framer-motion"
 import { Separator } from "@/components/ui/separator"
 import ProductImage from "@/components/products/image"
-import { JsonObject, JsonValue } from "@prisma/client/runtime/library"
+import { JsonValue } from "@prisma/client/runtime/library"
 import { valueAtom } from "@/atoms/product"
 import {
   Card,
   CardContent,
 } from "@/components/ui/card"
-import { Prisma } from "@prisma/client"
 import { useRecoilValue } from "recoil"
 
 type ProductDetailsProps = {
@@ -21,16 +20,21 @@ type ProductDetailsProps = {
     id: number;
     type: string;
     size: number;
-    description: JsonValue | null;
+    description: JsonValue;
   }[]
 }
 
 export default function ProductDetails({ category, products }: ProductDetailsProps) {
     // const [currentProductIndex, setCurrentProductIndex] = useState(0)
-
     const value = useRecoilValue(valueAtom)
+    const categoryDescription = Object.entries(category?.description || {});
+    const productDescriptions = products?.map((product) => Object.entries(product.description || {})) || [];
+
+    console.log("categoryDescription", categoryDescription)
+    console.log("productDescriptions", productDescriptions)
 
     return (
+      <div>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -69,11 +73,12 @@ export default function ProductDetails({ category, products }: ProductDetailsPro
                   <div>
                     <h3 className="text-xl font-semibold mt-4 mb-2">Specifications</h3>
                     <div className="grid gap-2">
-                      {Object.entries(products[value].description as JsonObject).map(([key, value]) => (
-                        <div key={key} className="bg-gray-100 p-2 rounded">
-                          <span className="font-medium">{key}:</span> {value?.toString()}
-                        </div>
-                      ))}
+                    {productDescriptions[value].map(([key, ans]) => (
+  <div key={key} className="bg-gray-100 p-2 rounded">
+    <span className="font-medium">{key}:</span>{' '}
+    {ans !== null && ans !== undefined ? JSON.stringify(ans) : ''}
+  </div>
+))}
                     </div>
                   </div>
                 )}
@@ -91,8 +96,8 @@ export default function ProductDetails({ category, products }: ProductDetailsPro
             <Separator className="my-8" />
             <h2 className="text-2xl font-semibold mb-6">Category Specifications</h2>
             <div className="grid md:grid-cols-2 gap-6">
-              {typeof category.description === 'object' && category.description !== null ? 
-                Object.entries(category.description as Prisma.JsonObject).map(([key, value], index) => (
+              {
+                categoryDescription.map(([key, value], index) => (
                   <motion.div
                     key={key}
                     initial={{ opacity: 0, x: -20 }}
@@ -101,14 +106,15 @@ export default function ProductDetails({ category, products }: ProductDetailsPro
                     className="bg-white rounded-lg p-4 shadow-sm"
                   >
                     <h3 className="text-sm font-medium text-gray-500">{key}</h3>
-                    <p className="mt-1 text-lg">{value?.toString()}</p>
+                    <p className="mt-1 text-lg">{value}</p>
                   </motion.div>
                 ))
-              : <p>No description available</p>}
+              }
             </div>
           </motion.div>
         )}
       </motion.div>
+    </div>
     )
 }
 

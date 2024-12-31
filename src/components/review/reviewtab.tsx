@@ -14,11 +14,11 @@ export type Review = {
 
 const categories = [
   { id: 1, name: 'MCB DB BOX' },
-  { id: 2, name: 'AC BOX' },
-  { id: 4, name: 'MAIN SWITCH CHANGEOVER' },
+  { id: 4, name: 'AC BOX' },
+  { id: 6, name: 'MAIN SWITCH CHANGEOVER' },
   { id: 3, name: 'GI MODULAR BOX' },
   { id: 5, name: 'BUS BAR' },
-  { id: 7, name: 'MCB' },
+  { id: 2, name: 'MCB' },
 ]
 
 export const ReviewTab = async ({categoryId}:{categoryId? : number}) => {
