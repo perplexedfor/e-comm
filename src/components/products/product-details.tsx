@@ -69,14 +69,14 @@ export default function ProductDetails({ category, products }: ProductDetailsPro
               <div className="space-y-4">
                 <p><strong>Type:</strong> {products[value].type.replace(/_/g, " ")}</p>
                 <p><strong>Size:</strong> {products[value].size}</p>
-                {products[value].description && (
+                {productDescriptions[value].length != 0 && (
                   <div>
                     <h3 className="text-xl font-semibold mt-4 mb-2">Specifications</h3>
                     <div className="grid gap-2">
                     {productDescriptions[value].map(([key, ans]) => (
   <div key={key} className="bg-gray-100 p-2 rounded">
     <span className="font-medium">{key}:</span>{' '}
-    {ans !== null && ans !== undefined ? JSON.stringify(ans) : ''}
+    {ans !== null && ans !== undefined ? ans : ''}
   </div>
 ))}
                     </div>
