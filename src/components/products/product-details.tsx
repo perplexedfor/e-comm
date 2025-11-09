@@ -1,121 +1,53 @@
+// src/components/products/product-details.tsx
+
 'use client'
 
-import { motion } from "framer-motion"
-import { Separator } from "@/components/ui/separator"
-import ProductImage from "@/components/products/image"
-import { JsonValue } from "@prisma/client/runtime/library"
-import { valueAtom } from "@/atoms/product"
-import {
-  Card,
-  CardContent,
-} from "@/components/ui/card"
-import { useRecoilValue } from "recoil"
+import { useState } from "react";
+import { JsonValue } from "@prisma/client/runtime/library";
+import ProductSidebar, { Filters } from "./ProductSidebar";
+import ProductGrid from "./ProductGrid";
 
-type ProductDetailsProps = {
-  category?: {
-    name: string
-    description: JsonValue
-  }
-  products?: {
+// Define new grouped structure type
+type GroupedProduct = {
+  type: string;
+  variations: {
     id: number;
-    type: string;
     size: number;
     description: JsonValue;
-  }[]
-}
+  }[];
+};
 
-export default function ProductDetails({ category, products }: ProductDetailsProps) {
-    // const [currentProductIndex, setCurrentProductIndex] = useState(0)
-    const value = useRecoilValue(valueAtom)
-    const categoryDescription = Object.entries(category?.description || {});
-    const productDescriptions = products?.map((product) => Object.entries(product.description || {})) || [];
+type ProductDetailsProps = {
+  category?: { name: string; description: JsonValue; };
+  products: any[]; // Flat list for filtering
+  groupedProducts: GroupedProduct[]; // Grouped list for display
+};
 
-    console.log("categoryDescription", categoryDescription)
-    console.log("productDescriptions", productDescriptions)
+export default function ProductDetails({ category, products = [], groupedProducts = [] }: ProductDetailsProps) {
+  const [filters, setFilters] = useState<Filters>({ type: [] });
 
-    return (
+  // Filter the grouped products based on the 'type' filter
+  const filteredGroupedProducts = groupedProducts.filter(group => {
+    return filters.type.length === 0 || filters.type.includes(group.type);
+  });
+
+  const categoryName = category?.name.replace(/_/g, " ") || "Products";
+  const categoryDescription = "Discover our premium range of electrical solutions designed for modern homes and businesses.";
+
+  return (
+    <div className="py-8">
       <div>
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="space-y-8"
-      >
-        <div className="flex flex-col md:flex-row justify-between items-start gap-8">
-          <div className="flex-1">
-            <h1 className="text-4xl font-bold tracking-tight">
-              {category?.name.replace(/_/g, " ")}
-            </h1>
-            <p className="mt-4 text-lg text-gray-600">
-              Discover our premium range of electrical solutions designed for modern homes and businesses.
-            </p>
-          </div>
-        </div>
-  
-        <div className="grid md:grid-cols-2 gap-8">
-          <Card className="overflow-hidden">
-            <CardContent className="p-0">
-              {products && (
-                <ProductImage 
-                  parameter={products}
-                />
-              )}
-            </CardContent>
-          </Card>
-  
-          <div>
-            <h2 className="text-2xl font-semibold mb-4">Product Details</h2>
-            {products && products[value] && (
-              <div className="space-y-4">
-                <p><strong>Type:</strong> {products[value].type.replace(/_/g, " ")}</p>
-                <p><strong>Size:</strong> {products[value].size}</p>
-                {productDescriptions[value].length != 0 && (
-                  <div>
-                    <h3 className="text-xl font-semibold mt-4 mb-2">Specifications</h3>
-                    <div className="grid gap-2">
-                    {productDescriptions[value].map(([key, ans]) => (
-  <div key={key} className="bg-gray-100 p-2 rounded">
-    <span className="font-medium">{key}:</span>{' '}
-    {ans !== null && ans !== undefined ? ans : ''}
-  </div>
-))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-        </div>
-  
-        {category?.description && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-          >
-            <Separator className="my-8" />
-            <h2 className="text-2xl font-semibold mb-6">Category Specifications</h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              {
-                categoryDescription.map(([key, value], index) => (
-                  <motion.div
-                    key={key}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    className="bg-white rounded-lg p-4 shadow-sm"
-                  >
-                    <h3 className="text-sm font-medium text-gray-500">{key}</h3>
-                    <p className="mt-1 text-lg">{value}</p>
-                  </motion.div>
-                ))
-              }
-            </div>
-          </motion.div>
-        )}
-      </motion.div>
+        <h1 className="text-4xl font-extrabold tracking-tight text-slate-900">{categoryName}</h1>
+        <p className="mt-3 text-lg text-slate-600 max-w-3xl">{categoryDescription}</p>
+      </div>
+
+      <div className="mt-12 flex flex-col lg:flex-row gap-12">
+        {/* The sidebar uses the original flat list to find all unique types */}
+        <ProductSidebar products={products} filters={filters} setFilters={setFilters} />
+        
+        {/* The grid uses the filtered, grouped list to display products */}
+        <ProductGrid groupedProducts={filteredGroupedProducts} />
+      </div>
     </div>
-    )
+  );
 }
-
-
