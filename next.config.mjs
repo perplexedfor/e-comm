@@ -12,7 +12,7 @@ const nextConfig = {
     return config;
   },
   images: {
-    domains: ['img.youtube.com'],
+    //domains: ['img.youtube.com'],
     remotePatterns: [
       {
         protocol: 'https',
@@ -20,6 +20,22 @@ const nextConfig = {
         port: '',
         pathname: '/storage/v1/object/public/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'img.youtube.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.pexels.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'upload.wikimedia.org',
+      }
     ],
   },
 

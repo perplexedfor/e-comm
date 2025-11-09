@@ -1,4 +1,4 @@
-import Header  from "@/components/home/header"
+import Header from "@/components/Header";
 import Products from "@/components/home/products"
 import InputBox from "@/components/review/inputbox"
 import ReviewTab from "@/components/review/reviewtab"
@@ -8,6 +8,8 @@ import Hero from "@/components/home/hero"
 import About from "@/components/home/about"
 import prisma from '@/db';
 import VideoSection from "@/components/home/video-section"
+import TrustBar from "@/components/home/TrustBar";
+import ContactForm from "@/components/home/ContactForm";
 
 // import Subfooter from "@/components/footer/subfooter"
 import Link from "next/link"
@@ -40,38 +42,20 @@ export default async function Component() {
     <div className="flex flex-col min-h-[100dvh] bg-gray-100">
       <Header/>
       <main className="flex-1">
-      <div className="flex items-center bg-gray-100 shadow-lg text-slate-800 sticky top-0 z-10 px-4 lg:px-6 h-14">
-        <nav className="ml-auto flex gap-4 sm:gap-6 justify-center">
-          <Link className="text-sm font-medium hover:underline underline-offset-4 bg-transparent" href="#about">
-            About
-          </Link>
-          <div className="bg-gray-300 w-[1px]">
-          </div>
-          <Link className="text-sm font-medium hover:underline underline-offset-4" href="#review">
-            Review
-          </Link>
-          <div className="bg-gray-300 w-[1px]">
-          </div>
-          <Link className="text-sm font-medium hover:underline underline-offset-4" href="#products">
-            Products
-          </Link>
-        </nav>
-        </div>
+
         <Hero/>
+        <TrustBar />
         <VideoSection/>
-        <section className="w-full py-12 md:py-24 lg:py-32 border-t relative" id="products">
-          <div className="text-3xl italic px-6 py-2">
-            We only deal in Wholesale * 
-          </div>
+        <section className="w-full bg-gray-50 border-t" id="products">
           <Products categories={data?.category}/>
         </section>
-        <div className="flex justify-center bg-[url('/background2.jpg')]">
-          <About/>
-        </div>
+        <About/>
+
         <section>
           <Factsheet/>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32 border-t">
+
+        <section className="w-full py-12 md:py-24 lg:py-32 border-t bg-slate-50">
           <div className="">
           <div className="space-y-2 text-center ">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl flex justify-center   ">Customer Reviews</h2>
@@ -84,7 +68,18 @@ export default async function Component() {
           </div>
           </div>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32 border-t" id="contact">
+        <section className="w-full py-12 md:py-24 lg:py-32 bg-slate-50 border-t" id="contact">
+        <div className="container px-4">
+          <div className="space-y-2 text-center mb-10">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Request a Quote</h2>
+            <p className="mx-auto max-w-[600px] text-slate-600 md:text-xl">
+              Interested in our products? Fill out the form below for wholesale pricing and inquiries.
+            </p>
+          </div>
+          <ContactForm />
+        </div>
+      </section>
+        <section className="w-full py-12 md:py-24 lg:py-32 border-t bg-slate-50" id="write-review">
           <div className="c">
             <div className="space-y-2 text-center">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Write a review</h2>

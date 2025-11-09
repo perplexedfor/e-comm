@@ -22,6 +22,7 @@ model reviews {
   created_at  DateTime @default(now())
   categoryId Int?
   category   category? @relation(fields: [categoryId], references: [id])
+  @@index([categoryId])
 }
 
 model category {
@@ -87,3 +88,12 @@ model BUS_BAR {
   description Json?
 }
 
+model Post {
+  id        Int      @id @default(autoincrement())
+  slug      String   @unique // This will be the URL (e.g., "how-to-choose-mcb")
+  title     String
+  content   String   // The main body of the article
+  imageUrl  String?  // A header image for the post
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
