@@ -89,7 +89,7 @@ export default async function Page({ params }: { params: { category: string } })
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header categories={categoriesData?.category || []} currentCategory={category} />
+      <Header currentCategory={category} />
       <main className="container mx-auto px-4 py-8">
         <ProductDetails category={currentCategoryInfo} products={products || []} groupedProducts={groupedProducts} />
         <ReviewSection reviews={reviews} categoryId={currentCategoryInfo?.id} />

@@ -5,13 +5,13 @@
 import React, { useState, useEffect, useCallback } from 'react';
 // === THE FIX IS ON THE NEXT TWO LINES ===
 import useEmblaCarousel from 'embla-carousel-react';
-import type { EmblaOptionsType } from 'embla-carousel-react'; // This correctly imports the type
+import EmblaOptionsType  from 'embla-carousel-react'; // This correctly imports the type
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 
 type PropType = {
   slides: string[];
-  options?: EmblaOptionsType;
+  options?: any;
   altText: string;
 };
 
